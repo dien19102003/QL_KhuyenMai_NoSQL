@@ -1,1 +1,1 @@
-# QL_KhuyenMai_NoSQL
+# Quản lý khuyến mãi
