@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace promotion_management_app
+namespace promotion_management_app.GUI
 {
-    public partial class Form1 : Form
+    public partial class Form_Sell : Form
     {
-        public Form1()
+        public Form_Sell()
         {
             InitializeComponent();
         }
+
     }
 }
