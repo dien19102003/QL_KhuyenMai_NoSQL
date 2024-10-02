@@ -9,14 +9,8 @@ using MongoDB.Driver.Core.Configuration;
 
 namespace promotion_management_app.DTO
 {
-    internal class DTO_SanPham
-    {
-        public IMongoCollection<SanPham> GetCollectionSanPham()
-        {
-            var client = new MongoClient(ConnectDatabase.connectionString);
-            var database = client.GetDatabase(ConnectDatabase.databaseName);
-            return database.GetCollection<SanPham>("SanPham");
-        }
+    public class DTO_SanPham
+    {     
         public class SanPham
         {
             public ObjectId _id { get; set; }

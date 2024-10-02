@@ -1,6 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using MongoDB.Driver;
 using promotion_management_app.BASE;
+using promotion_management_app.DAO;
 using promotion_management_app.DTO;
 using System;
 using System.Collections.Generic;
@@ -10,56 +11,143 @@ using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 using static promotion_management_app.DTO.DTO_SanPham;
+using static promotion_management_app.DTO.DTO_LoaiSanPham;
 
 namespace promotion_management_app.GUI
 {
     public partial class Form_Sell : Form
     {
+        DAO_SanPham daoSanPham = new DAO_SanPham();
         private int currentPage = 1;
         private int itemsPerPage = 10;
         private List<SanPham> productList;
+        private List<SanPham> allProducts; // Lưu trữ danh sách tất cả sản phẩm
+        
 
         public Form_Sell()
         {
-            InitializeComponent();        
-            loadDataSanPham();               
+            InitializeComponent();
+            loadDataSanPham();
+            LoadCBB();
+            cbbLoai.SelectedIndexChanged += CbbLoai_SelectedIndexChanged;
+            txtSearchSP.TextChanged += TxtSearchSP_TextChanged;
+            dgviewm_listSanPham.UserDeletedRow += Dgviewm_listSanPham_UserDeletedRow;
+            dgviewm_listSanPham.CellValueChanged += Dgviewm_listSanPham_CellValueChanged;
+        }
+
+        private void Dgviewm_listSanPham_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+           if(e.RowIndex>=0)
+            {
+                calculateDiscount();           
+            }    
+        }
+
+        private void Dgviewm_listSanPham_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            calculateDiscount();
         }
 
 
-        
-        private void loadDataSanPham()
+        private void TxtSearchSP_TextChanged(object sender, EventArgs e)
         {
-            DTO_SanPham sanpham = new DTO_SanPham();
-            IMongoCollection<SanPham> collection = sanpham.GetCollectionSanPham();
+            loadDataSanPham();
+        }
 
-            var projection = Builders<SanPham>.Projection
-                .Include(x => x.TenSP)
-                .Include(x => x.HinhAnh)
-                .Include(x => x.GiaBan)
-                .Include(x => x.SoLuong);
+        private void CbbLoai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadDataSanPham();
+        }
 
-            productList = collection
-                .Find(Builders<SanPham>.Filter.Empty)
-                .Project<SanPham>(projection)
-                .ToList();
-            // Calculate total pages based on the number of filtered products and items per page
+        private async void TimKiemKhachHang()
+        {
+            // Lấy số điện thoại từ TextBox
+            string sdt = txtSoDienThoai.Text.Trim();
+
+            if (string.IsNullOrEmpty(sdt))
+            {
+                MessageBox.Show("Vui lòng nhập số điện thoại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DAO_KhachHang daoKhachHang = new DAO_KhachHang();
+
+            // Tìm khách hàng theo SDT
+            var khachHang = await daoKhachHang.FindKhachHangBySDT(sdt);
+
+            if (khachHang != null)
+            {
+                // Nếu tìm thấy, hiển thị tên khách hàng vào TextBox
+                txtTenKhachHang.Text = khachHang.TenKH;
+            }
+            else
+            {
+                // Nếu không tìm thấy, thông báo
+                MessageBox.Show("Khách hàng không tồn tại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtTenKhachHang.Clear(); // Xóa nội dung TextBox tên khách hàng
+            }
+        }
+
+        private void LoadCBB()
+        {
+            DAO_LoaiSanPham daoLoaiSanPham = new DAO_LoaiSanPham();
+            List<KeyValuePair<string, string>> loaiSanPhamList = daoLoaiSanPham.GetLoaiSanPham();
+            loaiSanPhamList.Insert(0, new KeyValuePair<string, string>("All", "Tất cả"));
+            
+            cbbLoai.DataSource = loaiSanPhamList;
+            cbbLoai.DisplayMember = "Value";
+            cbbLoai.ValueMember = "Key";            
+        }
+
+        private void loadDataSanPham()
+        {          
+            allProducts = daoSanPham.GetListSanPham();
+
+            string selectedMaLoaiSP = cbbLoai.SelectedValue?.ToString();
+            string searchKeyword = txtSearchSP.Text.Trim().ToLower(); 
+
+            // Lọc sản phẩm theo LoaiSP nếu có chọn
+            if (!string.IsNullOrEmpty(selectedMaLoaiSP) && selectedMaLoaiSP != "All")
+            {
+                productList = allProducts.Where(p => p.LoaiSP == selectedMaLoaiSP).ToList();
+            }
+            else
+            {
+                productList = allProducts;
+            }
+
+            // Lọc sản phẩm theo tên sản phẩm nếu từ khóa tìm kiếm không rỗng
+            if (!string.IsNullOrEmpty(searchKeyword))
+            {
+                productList = productList.Where(p => p.TenSP.ToLower().Contains(searchKeyword)).ToList();
+            }
+
+            // Tính toán số trang dựa trên số lượng sản phẩm đã lọc và số sản phẩm trên mỗi trang
             int totalPages = (int)Math.Ceiling((double)productList.Count / itemsPerPage);
 
-            // Fetch products for the current page
+            // Lấy các sản phẩm cho trang hiện tại
             var productsToShow = productList
                 .Skip((currentPage - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .ToList();
 
-            // Clear existing controls and add new products
+            // Xóa các điều khiển hiện tại và thêm sản phẩm mới
             panel_SanPham.Controls.Clear();
             FlowLayoutPanel flowLayoutPanel = CreateProductsFlowPanel(productsToShow);
             panel_SanPham.Controls.Add(flowLayoutPanel);
 
-            // Clear existing pagination controls
+            // Xóa các điều khiển phân trang hiện tại
             panel_layoutPage.Controls.Clear();
 
-            // Create and add previous page button
+            // Tạo và thêm các nút phân trang (Previous, Page Buttons, Next)
+            CreatePaginationControls(totalPages);
+        }
+
+
+
+        private void CreatePaginationControls(int totalPages)
+        {
+            // Tạo và thêm nút trang trước
             Guna2Button prevButton = new Guna2Button
             {
                 Text = "<",
@@ -81,7 +169,7 @@ namespace promotion_management_app.GUI
             };
             panel_layoutPage.Controls.Add(prevButton);
 
-            // Create and add page buttons
+            // Tạo và thêm nút phân trang
             for (int i = 1; i <= totalPages; i++)
             {
                 Guna2Button pageButton = new Guna2Button
@@ -97,7 +185,7 @@ namespace promotion_management_app.GUI
                 };
                 pageButton.Click += PageButton_Click;
 
-                // Highlight the current page button
+                // Tô màu nút trang hiện tại
                 if (i == currentPage)
                 {
                     pageButton.FillColor = Color.CornflowerBlue;
@@ -106,7 +194,7 @@ namespace promotion_management_app.GUI
                 panel_layoutPage.Controls.Add(pageButton);
             }
 
-            // Create and add next page button
+            // Tạo và thêm nút trang tiếp theo
             Guna2Button nextButton = new Guna2Button
             {
                 Text = ">",
@@ -127,14 +215,7 @@ namespace promotion_management_app.GUI
                 }
             };
             panel_layoutPage.Controls.Add(nextButton);
-
-            // Configure layout settings
-            panel_layoutPage.FlowDirection = FlowDirection.LeftToRight;
-            panel_layoutPage.WrapContents = false;
-            panel_layoutPage.AutoSize = true;
-            panel_layoutPage.Anchor = AnchorStyles.None;
         }
-
 
         private FlowLayoutPanel CreateProductsFlowPanel(IEnumerable<SanPham> products)
         {
@@ -217,13 +298,97 @@ namespace promotion_management_app.GUI
                     var result = MessageBox.Show($"Bạn có muốn thêm sản phẩm {selectedProduct.TenSP} vào danh sách ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                       //insertProductToDTGV(selectedProduct);
+                        insertProductToDTGV(selectedProduct);
                     }
                 }
             };
 
             return productPanel;
         }
-        
+        private void insertProductToDTGV(SanPham product)
+        {
+            if (dgviewm_listSanPham == null)
+            {
+                MessageBox.Show("DataGridView is not initialized");
+                return;
+            }
+
+            foreach (DataGridViewRow row in dgviewm_listSanPham.Rows)
+            {
+                if (row.IsNewRow) continue;
+                if ((row.Cells["MaSP"].Value) == product.MaSP)
+                {
+                    int currentQuantity = Convert.ToInt32(row.Cells["SoLuong"].Value);
+                    row.Cells["SoLuong"].Value = currentQuantity + 1;
+                    calculateDiscount();
+                    return;
+                }
+            }
+
+            dgviewm_listSanPham.Rows.Add(product.MaSP, product.TenSP, product.GiaBan, null, 1, null, product.MaSP);
+            calculateDiscount();
+        }
+
+        private void calculateDiscount()
+        {
+            foreach (DataGridViewRow row in dgviewm_listSanPham.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string maSP = row.Cells["MaSP"].Value.ToString();
+               // int maKM = Convert.ToInt32(row.Cells["MaKM"].Value);
+                int SoLuong = Convert.ToInt32(row.Cells["SoLuong"].Value);
+                var sanPham = daoSanPham.GetSanPhamByMaSP(maSP);
+               // var khuyenMai = kmb.LoadKM().FirstOrDefault(km => km.MaKM == sanPham.MaKM);
+
+                //decimal soTienKhuyenMai = 0;
+                //if (khuyenMai != null)
+                //{
+                //    soTienKhuyenMai = (decimal)SoLuong * (decimal)sanPham.GiaSP * ((decimal)khuyenMai.GiamGia / 100);
+                //}
+
+                //row.Cells["KhuyenMai"].Value = soTienKhuyenMai;
+
+            }
+            UpdateTotalPrice();
+        }
+
+        private void UpdateTotalPrice()
+        {
+            decimal totalAmount = 0;
+            decimal totalDiscount = 0;
+            foreach (DataGridViewRow row in dgviewm_listSanPham.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                if (row.Cells["SoLuong"].Value != null && row.Cells["GiaSP"].Value != null )
+                {
+                    int quantity = 0;
+                    decimal price = 0;
+                    decimal discount = 0;
+
+                    if (int.TryParse(row.Cells["SoLuong"].Value.ToString(), out quantity) &&
+                        decimal.TryParse(row.Cells["GiaSP"].Value.ToString(), out price) )
+                        //decimal.TryParse(row.Cells["KhuyenMai"].Value.ToString(), out discount))
+                    {
+                        // Apply discount to price
+                        decimal discountedPrice = quantity * price - discount;
+                        totalAmount += discountedPrice;
+                        totalDiscount += discount;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid data in DataGridView");
+                    }
+                }
+            }
+            txtTongTien.Text = MyLib.AddCommas(totalAmount);
+            txtKhuyenMai.Text = " - " + MyLib.AddCommas(totalDiscount);
+
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            TimKiemKhachHang();
+        }
     }
 }

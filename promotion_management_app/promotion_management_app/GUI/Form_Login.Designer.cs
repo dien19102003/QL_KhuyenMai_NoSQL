@@ -50,13 +50,13 @@
             this.txtPassword.Font = new System.Drawing.Font("Bahnschrift Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.Black;
             this.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPassword.Location = new System.Drawing.Point(71, 222);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtPassword.Location = new System.Drawing.Point(95, 273);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '●';
             this.txtPassword.PlaceholderText = "";
             this.txtPassword.SelectedText = "";
-            this.txtPassword.Size = new System.Drawing.Size(277, 39);
+            this.txtPassword.Size = new System.Drawing.Size(369, 48);
             this.txtPassword.TabIndex = 22;
             // 
             // titleLoginForm
@@ -64,10 +64,9 @@
             this.titleLoginForm.AutoSize = true;
             this.titleLoginForm.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLoginForm.ForeColor = System.Drawing.Color.Black;
-            this.titleLoginForm.Location = new System.Drawing.Point(60, 40);
-            this.titleLoginForm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.titleLoginForm.Location = new System.Drawing.Point(80, 49);
             this.titleLoginForm.Name = "titleLoginForm";
-            this.titleLoginForm.Size = new System.Drawing.Size(317, 64);
+            this.titleLoginForm.Size = new System.Drawing.Size(404, 81);
             this.titleLoginForm.TabIndex = 27;
             this.titleLoginForm.Text = "Login Account";
             // 
@@ -84,13 +83,13 @@
             this.txtUsername.Font = new System.Drawing.Font("Bahnschrift Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.ForeColor = System.Drawing.Color.Black;
             this.txtUsername.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtUsername.Location = new System.Drawing.Point(70, 153);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtUsername.Location = new System.Drawing.Point(93, 188);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PasswordChar = '\0';
             this.txtUsername.PlaceholderText = "";
             this.txtUsername.SelectedText = "";
-            this.txtUsername.Size = new System.Drawing.Size(277, 39);
+            this.txtUsername.Size = new System.Drawing.Size(369, 48);
             this.txtUsername.TabIndex = 21;
             // 
             // btnLogin
@@ -105,21 +104,22 @@
             this.btnLogin.FillColor2 = System.Drawing.Color.IndianRed;
             this.btnLogin.Font = new System.Drawing.Font("Bahnschrift Condensed", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(153, 326);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogin.Location = new System.Drawing.Point(204, 401);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(135, 46);
+            this.btnLogin.Size = new System.Drawing.Size(180, 57);
             this.btnLogin.TabIndex = 26;
             this.btnLogin.Text = "Login";
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // chkShowPassword
             // 
             this.chkShowPassword.AutoSize = true;
             this.chkShowPassword.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShowPassword.Location = new System.Drawing.Point(235, 277);
-            this.chkShowPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.chkShowPassword.Location = new System.Drawing.Point(313, 341);
+            this.chkShowPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkShowPassword.Name = "chkShowPassword";
-            this.chkShowPassword.Size = new System.Drawing.Size(119, 22);
+            this.chkShowPassword.Size = new System.Drawing.Size(149, 27);
             this.chkShowPassword.TabIndex = 25;
             this.chkShowPassword.Text = "Show password";
             this.chkShowPassword.UseVisualStyleBackColor = true;
@@ -129,10 +129,9 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblPassword.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblPassword.Location = new System.Drawing.Point(65, 192);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPassword.Location = new System.Drawing.Point(87, 236);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(84, 25);
+            this.lblPassword.Size = new System.Drawing.Size(106, 33);
             this.lblPassword.TabIndex = 24;
             this.lblPassword.Text = "Password:";
             // 
@@ -141,19 +140,18 @@
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblUsername.Location = new System.Drawing.Point(65, 123);
-            this.lblUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsername.Location = new System.Drawing.Point(87, 151);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(87, 25);
+            this.lblUsername.Size = new System.Drawing.Size(109, 33);
             this.lblUsername.TabIndex = 23;
             this.lblUsername.Text = "Username:";
             // 
             // Form_Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(439, 459);
+            this.ClientSize = new System.Drawing.Size(585, 565);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.titleLoginForm);
             this.Controls.Add(this.txtUsername);
@@ -161,6 +159,7 @@
             this.Controls.Add(this.chkShowPassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form_Login";
             this.Text = "Form_Login";
             this.ResumeLayout(false);

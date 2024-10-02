@@ -159,7 +159,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BASE\MyLib.cs" />
-    <Compile Include="ConnectDatabase.cs" />
+    <Compile Include="BASE\ConnectDatabase.cs" />
+    <Compile Include="DAO\DAO_KhachHang.cs" />
+    <Compile Include="DAO\DAO_LoaiSanPham.cs" />
+    <Compile Include="DAO\DAO_NhanVien.cs" />
+    <Compile Include="DAO\DAO_SanPham.cs" />
+    <Compile Include="DTO\DTO_KhachHang.cs" />
+    <Compile Include="DTO\DTO_LoaiSanPham.cs" />
+    <Compile Include="DTO\DTO_NhanVien.cs" />
     <Compile Include="DTO\DTO_SanPham.cs" />
     <Compile Include="GUI\Form_EditPromotion.cs">
       <SubType>Form</SubType>
@@ -249,11 +256,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BUS\" />
-    <Folder Include="DAO\" />
-    <Folder Include="DTOS\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\logo-tra-sua-dep.jpg" />
   </ItemGroup>

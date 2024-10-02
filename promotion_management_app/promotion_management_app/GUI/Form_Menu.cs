@@ -13,9 +13,10 @@ namespace promotion_management_app.GUI
 {
     public partial class Form_Menu : Form
     {
-        public Form_Menu()
+        public Form_Menu(string tenNV)
         {
             InitializeComponent();
+            Label_Heading.Text = $"Xin chào : {tenNV}";
         }
 
         private void btn_KhuyenMai_Click(object sender, EventArgs e)
