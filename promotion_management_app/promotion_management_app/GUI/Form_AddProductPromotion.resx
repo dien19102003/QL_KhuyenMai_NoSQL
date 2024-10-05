@@ -117,52 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="guna2ImageButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        AAAASUVORK5CYII=
-</value>
-  </data>
+  <metadata name="guna2BorderlessForm1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

@@ -74,7 +74,9 @@
     <Reference Include="Snappier, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a1b25124e6e13a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Snappier.1.0.0\lib\netstandard2.0\Snappier.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -160,6 +162,7 @@
   <ItemGroup>
     <Compile Include="BASE\MyLib.cs" />
     <Compile Include="BASE\ConnectDatabase.cs" />
+<<<<<<< Updated upstream
     <Compile Include="DAO\DAO_KhachHang.cs" />
     <Compile Include="DAO\DAO_LoaiSanPham.cs" />
     <Compile Include="DAO\DAO_NhanVien.cs" />
@@ -167,12 +170,26 @@
     <Compile Include="DTO\DTO_KhachHang.cs" />
     <Compile Include="DTO\DTO_LoaiSanPham.cs" />
     <Compile Include="DTO\DTO_NhanVien.cs" />
+=======
+>>>>>>> Stashed changes
     <Compile Include="DTO\DTO_SanPham.cs" />
-    <Compile Include="GUI\Form_EditPromotion.cs">
+    <Compile Include="GUI\Form_AddProductPromotion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Form_EditPromotion.Designer.cs">
-      <DependentUpon>Form_EditPromotion.cs</DependentUpon>
+    <Compile Include="GUI\Form_AddProductPromotion.Designer.cs">
+      <DependentUpon>Form_AddProductPromotion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Form_AddPromotion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form_AddPromotion.Designer.cs">
+      <DependentUpon>Form_AddPromotion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Form_AddVourcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form_AddVourcher.Designer.cs">
+      <DependentUpon>Form_AddVourcher.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Form_Login.cs">
       <SubType>Form</SubType>
@@ -212,8 +229,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI\Form_EditPromotion.resx">
-      <DependentUpon>Form_EditPromotion.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Form_AddProductPromotion.resx">
+      <DependentUpon>Form_AddProductPromotion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form_AddPromotion.resx">
+      <DependentUpon>Form_AddPromotion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form_AddVourcher.resx">
+      <DependentUpon>Form_AddVourcher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form_Login.resx">
       <DependentUpon>Form_Login.cs</DependentUpon>
@@ -256,7 +279,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+<<<<<<< Updated upstream
   <ItemGroup />
+=======
+  <ItemGroup>
+    <Folder Include="DAO\" />
+  </ItemGroup>
+>>>>>>> Stashed changes
   <ItemGroup>
     <None Include="Resources\logo-tra-sua-dep.jpg" />
   </ItemGroup>
