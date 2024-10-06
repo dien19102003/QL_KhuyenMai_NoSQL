@@ -1,6 +1,6 @@
 ﻿namespace promotion_management_app.GUI
 {
-    partial class Form_Customer
+    partial class Form_Customer : System.Windows.Forms.Form
     {
         /// <summary>
         /// Required designer variable.

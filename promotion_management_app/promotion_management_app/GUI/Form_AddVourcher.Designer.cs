@@ -1,6 +1,6 @@
 ﻿namespace promotion_management_app.GUI
 {
-    partial class Form_AddVourcher
+    partial class Form_AddVourcher : System.Windows.Forms.Form
     {
         /// <summary>
         /// Required designer variable.
