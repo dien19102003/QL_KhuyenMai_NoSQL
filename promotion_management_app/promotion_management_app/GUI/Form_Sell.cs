@@ -390,5 +390,11 @@ namespace promotion_management_app.GUI
         {
             TimKiemKhachHang();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Form_Customer formCustomer = new Form_Customer();
+            formCustomer.Show();
+        }
     }
 }

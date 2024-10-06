@@ -270,6 +270,7 @@
             this.btnAdd.Size = new System.Drawing.Size(107, 49);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnSearch
             // 

@@ -162,7 +162,6 @@
   <ItemGroup>
     <Compile Include="BASE\MyLib.cs" />
     <Compile Include="BASE\ConnectDatabase.cs" />
-<<<<<<< Updated upstream
     <Compile Include="DAO\DAO_KhachHang.cs" />
     <Compile Include="DAO\DAO_LoaiSanPham.cs" />
     <Compile Include="DAO\DAO_NhanVien.cs" />
@@ -170,8 +169,6 @@
     <Compile Include="DTO\DTO_KhachHang.cs" />
     <Compile Include="DTO\DTO_LoaiSanPham.cs" />
     <Compile Include="DTO\DTO_NhanVien.cs" />
-=======
->>>>>>> Stashed changes
     <Compile Include="DTO\DTO_SanPham.cs" />
     <Compile Include="GUI\Form_AddProductPromotion.cs">
       <SubType>Form</SubType>
@@ -190,6 +187,12 @@
     </Compile>
     <Compile Include="GUI\Form_AddVourcher.Designer.cs">
       <DependentUpon>Form_AddVourcher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Form_Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form_Customer.Designer.cs">
+      <DependentUpon>Form_Customer.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Form_Login.cs">
       <SubType>Form</SubType>
@@ -238,6 +241,9 @@
     <EmbeddedResource Include="GUI\Form_AddVourcher.resx">
       <DependentUpon>Form_AddVourcher.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form_Customer.resx">
+      <DependentUpon>Form_Customer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form_Login.resx">
       <DependentUpon>Form_Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -279,13 +285,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-<<<<<<< Updated upstream
   <ItemGroup />
-=======
-  <ItemGroup>
-    <Folder Include="DAO\" />
-  </ItemGroup>
->>>>>>> Stashed changes
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\logo-tra-sua-dep.jpg" />
   </ItemGroup>

@@ -21,8 +21,10 @@ namespace promotion_management_app.GUI
 
         private void btn_KhuyenMai_Click(object sender, EventArgs e)
         {
-            Form_Promotion form_Promotion = new Form_Promotion();
-            MyLib.LoadForm(panel_container, form_Promotion,DockStyle.Fill);
+            //Form_Promotion form_Promotion = new Form_Promotion();
+            //MyLib.LoadForm(panel_container, form_Promotion,DockStyle.Fill);
+            Form_AddPromotion form_AddPromotion = new Form_AddPromotion();
+            MyLib.LoadForm(panel_container, form_AddPromotion, DockStyle.Fill);
         }
 
         private void btn_BanHang_Click(object sender, EventArgs e)
