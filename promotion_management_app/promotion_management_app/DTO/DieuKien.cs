@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,13 @@ namespace promotion_management_app.DTO
     public class DieuKien
     {
         //Dành cho sản phẩm
-        public virtual ICollection<SanPham> SanPhams { get; set; } = null;
+        [BsonIgnoreIfNull]
+        public virtual ICollection<SanPham> SanPham { get; set; } = null;
+        [BsonIgnoreIfNull]
         public int  SoLuongToiThieu { get; set; }
+        [BsonIgnoreIfNull]
 
         //Dành cho hoá đơn
-        public decimal  TongTienToiThieu { get; set; }
+        public decimal?  TongTienToiThieu { get; set; }
     }
 }
