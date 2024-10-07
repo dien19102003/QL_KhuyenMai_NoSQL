@@ -163,10 +163,12 @@
     <Compile Include="BASE\MyLib.cs" />
     <Compile Include="BASE\ConnectDatabase.cs" />
     <Compile Include="DAO\DAO_KhachHang.cs" />
+    <Compile Include="DAO\DAO_LoaiKhuyenMai.cs" />
     <Compile Include="DAO\DAO_LoaiSanPham.cs" />
     <Compile Include="DAO\DAO_NhanVien.cs" />
     <Compile Include="DAO\DAO_SanPham.cs" />
     <Compile Include="DTO\DTO_KhachHang.cs" />
+    <Compile Include="DTO\DTO_LoaiKhuyenMai.cs" />
     <Compile Include="DTO\DTO_LoaiSanPham.cs" />
     <Compile Include="DTO\DTO_NhanVien.cs" />
     <Compile Include="DTO\DTO_SanPham.cs" />

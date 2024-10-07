@@ -29,8 +29,8 @@ namespace promotion_management_app.DAO
                 .Include(x => x.HinhAnh)
                 .Include(x => x.GiaBan)
                 .Include(x => x.SoLuong)
-                 .Include(x => x.LoaiSP)
-                 .Include(x => x.MaSP);
+                .Include(x => x.LoaiSP)
+                .Include(x => x.MaSP);
 
             var productList = collection
                 .Find(Builders<SanPham>.Filter.Empty)
@@ -47,6 +47,16 @@ namespace promotion_management_app.DAO
 
             var filter = Builders<SanPham>.Filter.Eq("MaSP", maSP);
             return await collection.Find(filter).FirstOrDefaultAsync();
+        }
+
+        public List<SanPham> TimKiemSanPhamTheoTen(string tenSP)
+        {
+            var collection = GetCollectionSanPham();
+          
+            var filter = Builders<SanPham>.Filter.Regex("TenSP", new MongoDB.Bson.BsonRegularExpression(tenSP, "i"));           
+            var sanPhamList = collection.Find(filter).ToList();
+
+            return sanPhamList;
         }
     }
 }

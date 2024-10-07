@@ -23,7 +23,8 @@ namespace promotion_management_app.GUI
         {
             //Form_Promotion form_Promotion = new Form_Promotion();
             //MyLib.LoadForm(panel_container, form_Promotion,DockStyle.Fill);
-            Form_AddPromotion form_AddPromotion = new Form_AddPromotion();
+
+            Form_AddPromotion form_AddPromotion = new Form_AddPromotion(null);
             MyLib.LoadForm(panel_container, form_AddPromotion, DockStyle.Fill);
         }
 
