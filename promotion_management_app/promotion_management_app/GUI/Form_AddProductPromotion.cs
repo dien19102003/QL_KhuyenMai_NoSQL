@@ -9,6 +9,7 @@ namespace promotion_management_app.GUI
 {
     public partial class Form_AddProductPromotion : Form
     {
+        public  int flag = 0;
         public Form_AddProductPromotion()
         {
             InitializeComponent();
@@ -72,8 +73,6 @@ namespace promotion_management_app.GUI
         private void btnLuu_Click(object sender, EventArgs e)
         {
             List<SanPham> sanPhamThemList = new List<SanPham>();
-
-            // Duyệt qua các dòng của dgviews_SanPham để kiểm tra các dòng đã tick checkbox
             foreach (DataGridViewRow row in dgviews_SanPham.Rows)
             {
                 bool isChecked = Convert.ToBoolean(row.Cells["checkSP"].Value); // Kiểm tra checkbox
@@ -88,24 +87,69 @@ namespace promotion_management_app.GUI
                     };
                     // Thêm sản phẩm vào danh sách
                     sanPhamThemList.Add(sanPham);
-                   
+
                 }
             }
-
             // Kiểm tra nếu có sản phẩm nào được chọn
             if (sanPhamThemList.Count > 0)
             {
-                Form_AddPromotion form2 = Application.OpenForms.OfType<Form_AddPromotion>().FirstOrDefault();
-                if (form2 != null)
+                if (flag == 2)
                 {
-                    // Gọi phương thức thêm sản phẩm vào Form 2
-                    form2.AddSanPhamToList(sanPhamThemList);
-                    this.Close();
+                    Form_AddPromotion form2 = Application.OpenForms.OfType<Form_AddPromotion>().FirstOrDefault();
+                    if (form2 != null)
+                    {
+                        // Gọi phương thức thêm sản phẩm vào Form 2
+                        form2.AddSanPhamToList_Tab2(sanPhamThemList);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Form thứ hai chưa được mở!", "Thông báo");
+                    }
+                }
+                else if (flag ==22)
+                {
+                    Form_AddPromotion form2 = Application.OpenForms.OfType<Form_AddPromotion>().FirstOrDefault();
+                    if (form2 != null)
+                    {
+                        // Gọi phương thức thêm sản phẩm vào Form 2
+                        form2.AddSanPhamToList_Tab2QT(sanPhamThemList);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Form thứ hai chưa được mở!", "Thông báo");
+                    }
+                }
+               else if (flag == 4)
+                {
+                    Form_AddPromotion form2 = Application.OpenForms.OfType<Form_AddPromotion>().FirstOrDefault();
+                    if (form2 != null)
+                    {
+                        // Gọi phương thức thêm sản phẩm vào Form 2
+                        form2.AddSanPhamToList_Tab4(sanPhamThemList);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Form thứ hai chưa được mở!", "Thông báo");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Form thứ hai chưa được mở!", "Thông báo");
+                    Form_AddPromotion form2 = Application.OpenForms.OfType<Form_AddPromotion>().FirstOrDefault();
+                    if (form2 != null)
+                    {
+                        // Gọi phương thức thêm sản phẩm vào Form 2
+                        form2.AddSanPhamToList(sanPhamThemList);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Form thứ hai chưa được mở!", "Thông báo");
+                    }
                 }
+
             }
             else
             {

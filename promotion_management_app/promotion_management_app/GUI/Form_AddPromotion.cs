@@ -17,13 +17,33 @@ namespace promotion_management_app.GUI
     public partial class Form_AddPromotion : Form
     {
         List<SanPham> sanPhamList;
+        // Các danh sách sản phẩm cho từng tab
+        //private List<SanPham> sanPhamTab1 = new List<SanPham>();
+        //private List<SanPham> sanPhamTab2 = new List<SanPham>();
+        //private List<SanPham> sanPhamTab3 = new List<SanPham>();
+        //private List<SanPham> sanPhamTab4 = new List<SanPham>();
+        //List<Voucher> voucherList;
+        public Voucher vc;
+
+
         public Form_AddPromotion(List<SanPham> sanPhamList)
         {
             InitializeComponent();
+            vc=new Voucher();
             this.sanPhamList = sanPhamList;
-            LoadDataToGrid(this.sanPhamList);
+            LoadDataToGrid(this.sanPhamList);          
             txtMaKM_Tab1.Enabled = false;
-            LoadCBB();
+            MaKM_Tab3.Enabled=false;
+            MaKM_Tab4.Enabled=false;
+            MaKM_Tab2.Enabled=false;
+            LoadCBB();          
+        }
+        
+        public void AddVoucher(Voucher voucher)
+        {
+           
+            dgview_Voucher_Tab4.Rows.Add(voucher.GiftCode,voucher.NgayBatDau,voucher.NgayKetThuc,voucher.GiamGia);
+             
         }
         public void LoadDataToGrid(List<SanPham> sanPhamList)
         {
@@ -65,6 +85,65 @@ namespace promotion_management_app.GUI
             }
         }
 
+        public void AddSanPhamToList_Tab2(List<SanPham> sanPhamList)
+        {
+            foreach (var sanPham in sanPhamList)
+            {
+                // Kiểm tra nếu sản phẩm đã tồn tại trước khi thêm
+                bool exists =dgview_Sp_Tab2.Rows.Cast<DataGridViewRow>()
+                    .Any(row => row.Cells["MaSPTab2"].Value.ToString() == sanPham.MaSP);
+
+                if (!exists)
+                {
+                    dgview_Sp_Tab2.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                }
+            }
+        }
+
+        public void AddSanPhamToList_Tab2QT(List<SanPham> sanPhamTab2)
+        {
+            foreach (var sanPham in sanPhamTab2)
+            {
+                // Kiểm tra nếu sản phẩm đã tồn tại trước khi thêm
+                bool exists = dgview_QuaTang_Tab2.Rows.Cast<DataGridViewRow>()
+                    .Any(row => row.Cells["MaSP_Tab2QT"].Value.ToString() == sanPham.MaSP);
+
+                if (!exists)
+                {
+                    dgview_QuaTang_Tab2.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                }
+            }
+        }
+
+        public void AddSanPhamToList_Tab4(List<SanPham> sanPhamList)
+        {
+            foreach (var sanPham in sanPhamList)
+            {
+                // Kiểm tra nếu sản phẩm đã tồn tại trước khi thêm
+                bool exists = dgview_SP_Tab4.Rows.Cast<DataGridViewRow>()
+                    .Any(row => row.Cells["MaSP_Tab4"].Value.ToString() == sanPham.MaSP);
+
+                if (!exists)
+                {
+                    dgview_SP_Tab4.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                }
+            }
+        }
+        public void AddSanPhamToList_Tab4_Voucher(List<SanPham> sanPhamList)
+        {
+            foreach (var sanPham in sanPhamList)
+            {
+                // Kiểm tra nếu sản phẩm đã tồn tại trước khi thêm
+                bool exists = dgview_Voucher_Tab4.Rows.Cast<DataGridViewRow>()
+                    .Any(row => row.Cells["MaSP"].Value.ToString() == sanPham.MaSP);
+
+                if (!exists)
+                {
+                    dgviewm_listSanPham.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                }
+            }
+        }
+
         private void btnAddProduct_Tab1_Click(object sender, EventArgs e)
         {
             Form_AddProductPromotion form_AddProductPromotion = new Form_AddProductPromotion();
@@ -72,14 +151,16 @@ namespace promotion_management_app.GUI
         }
 
         private void btnAddProduct_Tab2_Click(object sender, EventArgs e)
-        {
+        {           
             Form_AddProductPromotion form_AddProductPromotion = new Form_AddProductPromotion();
+            form_AddProductPromotion.flag = 2;
             form_AddProductPromotion.ShowDialog();
         }
 
         private void btnThemQT_Click(object sender, EventArgs e)
         {
             Form_AddProductPromotion form_AddProductPromotion = new Form_AddProductPromotion();
+            form_AddProductPromotion.flag = 22;
             form_AddProductPromotion.ShowDialog();
         }
 
@@ -91,8 +172,9 @@ namespace promotion_management_app.GUI
 
         private void btnAddProduct_Tab4_Click(object sender, EventArgs e)
         {
-            Form_AddVourcher form_AddVourcher = new Form_AddVourcher();
-            form_AddVourcher.ShowDialog();
+            Form_AddProductPromotion form_AddProductPromotion = new Form_AddProductPromotion();
+            form_AddProductPromotion.flag = 4;
+            form_AddProductPromotion.ShowDialog();
         }
 
         private void LoadCBB()
@@ -100,21 +182,21 @@ namespace promotion_management_app.GUI
             DAO_LoaiKhuyenMai daoLoaiKhuyenMai = new DAO_LoaiKhuyenMai();
             List<KeyValuePair<string, string>> loaiKhuyenMaiList = daoLoaiKhuyenMai.GetLoaiKhuyenMai();
 
-            cbbkhuyenmai.DataSource = loaiKhuyenMaiList;
-            cbbkhuyenmai.DisplayMember = "Value";
-            cbbkhuyenmai.ValueMember = "Key";
+            cbbkhuyenmai_Tab1.DataSource = loaiKhuyenMaiList;
+            cbbkhuyenmai_Tab1.DisplayMember = "Value";
+            cbbkhuyenmai_Tab1.ValueMember = "Key";
 
-            cbbkhuyenmai1.DataSource = loaiKhuyenMaiList;
-            cbbkhuyenmai1.DisplayMember = "Value";
-            cbbkhuyenmai1.ValueMember = "Key";
+            cbbkhuyenmai_Tab2.DataSource = loaiKhuyenMaiList;
+            cbbkhuyenmai_Tab2.DisplayMember = "Value";
+            cbbkhuyenmai_Tab2.ValueMember = "Key";
 
-            cbbkhuyenmai2.DataSource = loaiKhuyenMaiList;
-            cbbkhuyenmai2.DisplayMember = "Value";
-            cbbkhuyenmai2.ValueMember = "Key";
+            cbbkhuyenmai_Tab3.DataSource = loaiKhuyenMaiList;
+            cbbkhuyenmai_Tab3.DisplayMember = "Value";
+            cbbkhuyenmai_Tab3.ValueMember = "Key";
 
-            cbbkhuyenmai3.DataSource = loaiKhuyenMaiList;
-            cbbkhuyenmai3.DisplayMember = "Value";
-            cbbkhuyenmai3.ValueMember = "Key";
+            cbbkhuyenmai_Tab4.DataSource = loaiKhuyenMaiList;
+            cbbkhuyenmai_Tab4.DisplayMember = "Value";
+            cbbkhuyenmai_Tab4.ValueMember = "Key";
         }
 
 
@@ -122,7 +204,7 @@ namespace promotion_management_app.GUI
         {
             string makm = txtMaKM_Tab1.Text;
             string tenkm=txtTenKM_Tab1.Text;
-            string maloai=cbbkhuyenmai.SelectedValue.ToString();
+            string maloai=cbbkhuyenmai_Tab1.SelectedValue.ToString();
             // Thiết lập định dạng cho DateTimePicker
             date_NgayBD_Tab1.Format = DateTimePickerFormat.Custom;
             date_NgayBD_Tab1.CustomFormat = "dd/MM/yyyy";
@@ -133,10 +215,22 @@ namespace promotion_management_app.GUI
             date_KetThuc_Tab1.CustomFormat = "dd/MM/yyyy";
             DateTime ngaykt = date_KetThuc_Tab1.Value;
 
+            List<SanPham> sanPhamList = new List<SanPham>();
+            foreach (DataGridViewRow item in dgviewm_listSanPham.Rows)
+            {
+                SanPham sp = new SanPham()
+                {
+                    MaSP = item.Cells[0].Value.ToString(),
+                    TenSP = item.Cells[1].Value.ToString(),
+                    GiaBan = Decimal.Parse(item.Cells[2].Value.ToString())
+                };
+                sanPhamList.Add(sp);
+
+            }
             string hinhthuc = txtHinhThuc_Tab1.Text;
             int sltt =int.Parse( txtSoLuongTT_Tab1.Text);
             float giamgia = float.Parse(txtGiamGia_Tab1.Text);
-
+            
             KhuyenMai km = new KhuyenMai()
             {
                 MaKM = GenerateRandomKhuyenMaiId(),
@@ -146,6 +240,7 @@ namespace promotion_management_app.GUI
                 NgayKetThuc = ngaykt,
                 DieuKien = new DieuKien()
                 {
+
                     SanPham = sanPhamList,
                     SoLuongToiThieu = sltt,
 
@@ -169,6 +264,208 @@ namespace promotion_management_app.GUI
 
         }
 
+        private async void ThemKhuyenMai_Tab3()
+        {
+            string makm = MaKM_Tab3.Text;
+            string tenkm = TenKM_Tab3.Text;
+            string maloai = cbbkhuyenmai_Tab3.SelectedValue.ToString();
+            // Thiết lập định dạng cho DateTimePicker
+            NgayBD_Tab3.Format = DateTimePickerFormat.Custom;
+            NgayBD_Tab3.CustomFormat = "dd/MM/yyyy";
+            // Lấy giá trị từ DateTimePicker
+            DateTime ngaybd = date_NgayBD_Tab1.Value;
+
+            NgayKT_Tab3.Format = DateTimePickerFormat.Custom;
+            NgayKT_Tab3.CustomFormat = "dd/MM/yyyy";
+            DateTime ngaykt = date_KetThuc_Tab1.Value;
+
+            string hinhthuc = HinhThuc_Tab3.Text;
+            decimal tttt = decimal.Parse(txtTongTienTT_Tab3.Text);
+            float giamgia = float.Parse(Giamgia_Tab3.Text);
+
+            KhuyenMai km = new KhuyenMai()
+            {
+                MaKM = GenerateRandomKhuyenMaiId(),
+                TenKM = tenkm,
+                MaLoaiKM = maloai,
+                NgayBatDau = ngaybd,
+                NgayKetThuc = ngaykt,
+                DieuKien = new DieuKien()
+                {                  
+                    TongTienToiThieu = tttt,
+                },
+                GiamGia = giamgia,
+            };
+
+
+            // Gọi hàm thêm khách hàng
+            var daokm = new DAO_KhuyenMai_Tab1();
+            bool isAdded = await daokm.AddKhuyenMai(km);
+
+            if (isAdded)
+            {
+                MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Thêm khách hàng thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private async void ThemKhuyenMai_Tab2()
+        {
+            string makm = MaKM_Tab2.Text;
+            string tenkm = TenKM_Tab2.Text;
+            string maloai = cbbkhuyenmai_Tab3.SelectedValue.ToString();
+            // Thiết lập định dạng cho DateTimePicker
+            NgayBD_Tab3.Format = DateTimePickerFormat.Custom;
+            NgayBD_Tab3.CustomFormat = "dd/MM/yyyy";
+            // Lấy giá trị từ DateTimePicker
+            DateTime ngaybd = date_NgayBD_Tab1.Value;
+
+            NgayKT_Tab3.Format = DateTimePickerFormat.Custom;
+            NgayKT_Tab3.CustomFormat = "dd/MM/yyyy";
+            DateTime ngaykt = date_KetThuc_Tab1.Value;
+
+            string hinhthuc = HinhThuc_Tab3.Text;
+            int sltt = int.Parse(sltt_Tab2.Text);
+
+            List<SanPham> SanPhamMua = new List<SanPham>();
+            foreach (DataGridViewRow item in dgview_Sp_Tab2.Rows)
+            {
+                SanPham sp = new SanPham()
+                {
+                    MaSP = item.Cells[0].Value.ToString(),
+                    TenSP = item.Cells[1].Value.ToString(),
+                    GiaBan = Decimal.Parse(item.Cells[2].Value.ToString())
+                };
+                SanPhamMua.Add(sp);
+
+            }
+
+            List<SanPham> SanPhamQT = new List<SanPham>();
+            foreach (DataGridViewRow item in dgview_QuaTang_Tab2.Rows)
+            {
+                SanPham sp = new SanPham()
+                {
+                    MaSP = item.Cells[0].Value.ToString(),
+                    TenSP = item.Cells[1].Value.ToString(),
+                    GiaBan = Decimal.Parse(item.Cells[2].Value.ToString())
+                };
+                SanPhamQT.Add(sp);
+            }
+            KhuyenMai km = new KhuyenMai()
+            {
+                MaKM = GenerateRandomKhuyenMaiId(),
+                TenKM = tenkm,
+                MaLoaiKM = maloai,
+                NgayBatDau = ngaybd,
+                NgayKetThuc = ngaykt,
+                DieuKien = new DieuKien()
+                {
+                    SanPham = SanPhamMua,
+                    SoLuongToiThieu = sltt,
+                },
+                QuaTang = SanPhamQT,
+               
+            };
+            
+             
+            // Gọi hàm thêm khách hàng
+            var daokm = new DAO_KhuyenMai_Tab1();
+            bool isAdded = await daokm.AddKhuyenMai(km);
+
+            if (isAdded)
+            {
+                MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Thêm khách hàng thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private async void ThemKhuyenMai_Tab4()
+        {
+            string makm = MaKM_Tab4.Text;
+            string tenkm = TenKM_Tab4.Text;
+            string maloai = cbbkhuyenmai_Tab4.SelectedValue.ToString();
+            // Thiết lập định dạng cho DateTimePicker
+            NgayBD_Tab4.Format = DateTimePickerFormat.Custom;
+            NgayBD_Tab4.CustomFormat = "dd/MM/yyyy";
+            // Lấy giá trị từ DateTimePicker
+            DateTime ngaybd = date_NgayBD_Tab1.Value;
+
+            NgayKT_Tab4.Format = DateTimePickerFormat.Custom;
+            NgayKT_Tab4.CustomFormat = "dd/MM/yyyy";
+            DateTime ngaykt = date_KetThuc_Tab1.Value;
+
+            string hinhthuc = HinhThuc_Tab4.Text;
+            int sltt = int.Parse(sltt_Tab4.Text);
+
+            List<SanPham> SanPhamMua = new List<SanPham>();
+            foreach (DataGridViewRow item in dgview_SP_Tab4.Rows)
+            {
+                SanPham sp = new SanPham()
+                {
+                    MaSP = item.Cells[0].Value.ToString(),
+                    TenSP = item.Cells[1].Value.ToString(),
+                    GiaBan = Decimal.Parse(item.Cells[2].Value.ToString())
+                };
+                SanPhamMua.Add(sp);
+
+            }
+            //// Lấy giá trị ngày từ DataGridView
+            //string ngayBatDauStr = dgview_Voucher_Tab4.Rows[0].Cells[1].Value.ToString();
+            //string ngayKetThucStr = dgview_Voucher_Tab4.Rows[0].Cells[2].Value.ToString();
+
+            //// Chuyển đổi chuỗi thành DateTime với định dạng dd/MM/yyyy
+            //DateTime ngaybd1 = DateTime.ParseExact(ngayBatDauStr, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            //DateTime ngaykt1 = DateTime.ParseExact(ngayKetThucStr, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            //Voucher vc = new Voucher()
+            //    {
+            //        GiftCode = dgview_Voucher_Tab4.Rows[0].Cells[0].Value.ToString(),
+            //        NgayBatDau=ngaybd1,           
+            //        NgayKetThuc = ngaykt1,
+            //        GiamGia = float.Parse(dgview_Voucher_Tab4.Rows[0].Cells[3].Value.ToString())
+            // };
+
+               
+           
+            KhuyenMai km = new KhuyenMai()
+            {
+                MaKM = GenerateRandomKhuyenMaiId(),
+                TenKM = tenkm,
+                MaLoaiKM = maloai,
+                NgayBatDau = ngaybd,
+                NgayKetThuc = ngaykt,
+                DieuKien = new DieuKien()
+                {
+                    SanPham = SanPhamMua,
+                    SoLuongToiThieu = sltt,
+                }, 
+                Voucher=vc,
+
+            };
+
+
+            // Gọi hàm thêm khách hàng
+            var daokm = new DAO_KhuyenMai_Tab1();
+            bool isAdded = await daokm.AddKhuyenMai(km);
+
+            if (isAdded)
+            {
+                MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Thêm khách hàng thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
         private string GenerateRandomKhuyenMaiId()
         {
             Random random = new Random();
@@ -179,6 +476,21 @@ namespace promotion_management_app.GUI
         private void btnLuu_Tab1_Click(object sender, EventArgs e)
         {
             ThemKhuyenMai_Tab1();
+        }
+
+        private void BtnLuu_Tab3_Click_1(object sender, EventArgs e)
+        {
+            ThemKhuyenMai_Tab3();
+        }
+
+        private void BtnLuu_Tab2_Click(object sender, EventArgs e)
+        {
+            ThemKhuyenMai_Tab2();
+        }
+
+        private void guna2GradientButton9_Click(object sender, EventArgs e)
+        {
+            ThemKhuyenMai_Tab4();
         }
     }
 }

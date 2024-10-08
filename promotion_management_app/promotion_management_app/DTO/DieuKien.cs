@@ -14,7 +14,7 @@ namespace promotion_management_app.DTO
         [BsonIgnoreIfNull]
         public virtual ICollection<SanPham> SanPham { get; set; } = null;
         [BsonIgnoreIfNull]
-        public int  SoLuongToiThieu { get; set; }
+        public int?  SoLuongToiThieu { get; set; }
         [BsonIgnoreIfNull]
 
         //Dành cho hoá đơn
