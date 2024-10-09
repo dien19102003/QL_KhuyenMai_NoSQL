@@ -1,4 +1,5 @@
-﻿using promotion_management_app.DAO;
+﻿using Guna.UI2.WinForms;
+using promotion_management_app.DAO;
 using promotion_management_app.DTO;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,14 @@ namespace promotion_management_app.GUI
         //List<Voucher> voucherList;
         public Voucher vc;
 
+        List<KhuyenMai> khuyenMaiList;
+        
 
         public Form_AddPromotion(List<SanPham> sanPhamList)
         {
+
             InitializeComponent();
+            this.Load += Form_AddPromotion_Load;
             vc=new Voucher();
             this.sanPhamList = sanPhamList;
             LoadDataToGrid(this.sanPhamList);          
@@ -36,11 +41,24 @@ namespace promotion_management_app.GUI
             MaKM_Tab3.Enabled=false;
             MaKM_Tab4.Enabled=false;
             MaKM_Tab2.Enabled=false;
+            cbbkhuyenmai_Tab1.Enabled=false;
+            cbbkhuyenmai_Tab2.Enabled = false;
+            cbbkhuyenmai_Tab3.Enabled = false;
+            cbbkhuyenmai_Tab4.Enabled = false;
             LoadCBB();
+            Loadcbb_TimKiem();
             viewDataPromotion();
             
+
         }
-        
+
+        private void Form_AddPromotion_Load(object sender, EventArgs e)
+        {
+            DAO_KhuyenMai_Tab1 daoKhuyenMai = new DAO_KhuyenMai_Tab1();
+            khuyenMaiList = daoKhuyenMai.GetListKhuyenMai();
+            dgv_ALLkhuyenmai.DataSource = khuyenMaiList;
+        }
+
         public void AddVoucher(Voucher voucher)
         {
            
@@ -183,37 +201,107 @@ namespace promotion_management_app.GUI
         {
             DAO_LoaiKhuyenMai daoLoaiKhuyenMai = new DAO_LoaiKhuyenMai();
             List<KeyValuePair<string, string>> loaiKhuyenMaiList = daoLoaiKhuyenMai.GetLoaiKhuyenMai();
+          
+            if (loaiKhuyenMaiList.Count >= 4)
+            {
+                cbbkhuyenmai_Tab1.DataSource = new List<KeyValuePair<string, string>> { loaiKhuyenMaiList[0] };
+                cbbkhuyenmai_Tab1.DisplayMember = "Value";
+                cbbkhuyenmai_Tab1.ValueMember = "Key";
 
-            cbbkhuyenmai_Tab1.DataSource = loaiKhuyenMaiList;
-            cbbkhuyenmai_Tab1.DisplayMember = "Value";
-            cbbkhuyenmai_Tab1.ValueMember = "Key";
+                cbbkhuyenmai_Tab2.DataSource = new List<KeyValuePair<string, string>> { loaiKhuyenMaiList[1] };
+                cbbkhuyenmai_Tab2.DisplayMember = "Value";
+                cbbkhuyenmai_Tab2.ValueMember = "Key";
 
-            cbbkhuyenmai_Tab2.DataSource = loaiKhuyenMaiList;
-            cbbkhuyenmai_Tab2.DisplayMember = "Value";
-            cbbkhuyenmai_Tab2.ValueMember = "Key";
+                cbbkhuyenmai_Tab3.DataSource = new List<KeyValuePair<string, string>> { loaiKhuyenMaiList[2] };
+                cbbkhuyenmai_Tab3.DisplayMember = "Value";
+                cbbkhuyenmai_Tab3.ValueMember = "Key";
 
-            cbbkhuyenmai_Tab3.DataSource = loaiKhuyenMaiList;
-            cbbkhuyenmai_Tab3.DisplayMember = "Value";
-            cbbkhuyenmai_Tab3.ValueMember = "Key";
+                cbbkhuyenmai_Tab4.DataSource = new List<KeyValuePair<string, string>> { loaiKhuyenMaiList[3] };
+                cbbkhuyenmai_Tab4.DisplayMember = "Value";
+                cbbkhuyenmai_Tab4.ValueMember = "Key";
+            }
+            else
+            {              
+                MessageBox.Show("Không đủ loại khuyến mãi để gán cho tất cả các tab.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void Loadcbb_TimKiem()
+        {
+            DAO_LoaiKhuyenMai daoLoaiKhuyenMai = new DAO_LoaiKhuyenMai();
+            List<KeyValuePair<string, string>> loaiKhuyenMaiList = daoLoaiKhuyenMai.GetLoaiKhuyenMai();
 
-            cbbkhuyenmai_Tab4.DataSource = loaiKhuyenMaiList;
-            cbbkhuyenmai_Tab4.DisplayMember = "Value";
-            cbbkhuyenmai_Tab4.ValueMember = "Key";
+            // Thêm tùy chọn "Tất cả" vào danh sách
+            loaiKhuyenMaiList.Insert(0, new KeyValuePair<string, string>("0", "Tất cả"));
+
+            cbb_TimKiemKhuyenMai.DataSource = loaiKhuyenMaiList;
+            cbb_TimKiemKhuyenMai.DisplayMember = "Value";
+            cbb_TimKiemKhuyenMai.ValueMember = "Key";
+
+            cbb_TimKiemKhuyenMai.SelectedValue = "0";
         }
 
+        private void XoaText()
+        {
+            foreach (Control control in TableLayoutPanel_Info.Controls)
+            {
+                // Kiểm tra xem điều khiển có phải là TextBox không
+                if (control is Guna2TextBox guna2TextBox)
+                {
+                    // Đặt giá trị của TextBox thành rỗng
+                    guna2TextBox.Text = string.Empty;
+                }
+            }          
+        }
+        private void XoaText_Tab2()
+        {
+            foreach (Control control in tableLayoutPanel_Tab2.Controls)
+            {
+                // Kiểm tra xem điều khiển có phải là TextBox không
+                if (control is Guna2TextBox guna2TextBox)
+                {
+                    // Đặt giá trị của TextBox thành rỗng
+                    guna2TextBox.Text = string.Empty;
+                }
+            }
+        }
+        private void XoaText_Tab3()
+        {
+            foreach (Control control in tableLayoutPanel_Tab3.Controls)
+            {
+                // Kiểm tra xem điều khiển có phải là TextBox không
+                if (control is Guna2TextBox guna2TextBox)
+                {
+                    // Đặt giá trị của TextBox thành rỗng
+                    guna2TextBox.Text = string.Empty;
+                }
+            }
+        }
+        private void XoaText_Tab4()
+        {
+            foreach (Control control in tableLayoutPanel_Tab4.Controls)
+            {
+                // Kiểm tra xem điều khiển có phải là TextBox không
+                if (control is Guna2TextBox guna2TextBox)
+                {
+                    // Đặt giá trị của TextBox thành rỗng
+                    guna2TextBox.Text = string.Empty;
+                }
+            }
+        }
 
         private async void ThemKhuyenMai_Tab1()
         {
+            
             string makm = txtMaKM_Tab1.Text;
-            string tenkm=txtTenKM_Tab1.Text;
-            string maloai=cbbkhuyenmai_Tab1.SelectedValue.ToString();
+            string tenkm = txtTenKM_Tab1.Text;
+            string maloai = cbbkhuyenmai_Tab1.SelectedValue.ToString();
             // Thiết lập định dạng cho DateTimePicker
             date_NgayBD_Tab1.Format = DateTimePickerFormat.Custom;
             date_NgayBD_Tab1.CustomFormat = "dd/MM/yyyy";
             // Lấy giá trị từ DateTimePicker
             DateTime ngaybd = date_NgayBD_Tab1.Value;
 
-            date_KetThuc_Tab1.Format=DateTimePickerFormat.Custom;
+            date_KetThuc_Tab1.Format = DateTimePickerFormat.Custom;
             date_KetThuc_Tab1.CustomFormat = "dd/MM/yyyy";
             DateTime ngaykt = date_KetThuc_Tab1.Value;
 
@@ -230,40 +318,71 @@ namespace promotion_management_app.GUI
 
             }
             string hinhthuc = txtHinhThuc_Tab1.Text;
-            int sltt =int.Parse( txtSoLuongTT_Tab1.Text);
+            int sltt = int.Parse(txtSoLuongTT_Tab1.Text);
             float giamgia = float.Parse(txtGiamGia_Tab1.Text);
-            
-            KhuyenMai km = new KhuyenMai()
+           
+            if (string.IsNullOrEmpty(makm))
             {
-                MaKM = GenerateRandomKhuyenMaiId(),
-                TenKM = tenkm,
-                MaLoaiKM = maloai,
-                NgayBatDau = ngaybd,
-                NgayKetThuc = ngaykt,
-                DieuKien = new DieuKien()
+                KhuyenMai km = new KhuyenMai()
                 {
+                    MaKM = GenerateRandomKhuyenMaiId(),
+                    TenKM = tenkm,
+                    MaLoaiKM = maloai,
+                    NgayBatDau = ngaybd,
+                    NgayKetThuc = ngaykt,
+                    DieuKien = new DieuKien()
+                    {
 
-                    SanPham = sanPhamList,
-                    SoLuongToiThieu = sltt,
+                        SanPham = sanPhamList,
+                        SoLuongToiThieu = sltt,
 
-                },
-                GiamGia = giamgia,
-            };
+                    },
+                    GiamGia = giamgia,
+                };
+                // Gọi hàm thêm khách hàng
+                var daokm = new DAO_KhuyenMai_Tab1();
+                bool isAdded = await daokm.AddKhuyenMai(km);
 
-
-            // Gọi hàm thêm khách hàng
-            var daokm = new DAO_KhuyenMai_Tab1();
-            bool isAdded = await daokm.AddKhuyenMai(km);
-
-            if (isAdded)
-            {
-                MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                if (isAdded)
+                {
+                    MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Thêm Khuyến mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }   
             else
             {
-                MessageBox.Show("Thêm khách hàng thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                KhuyenMai km = new KhuyenMai()
+                {
+                    MaKM = makm,
+                    TenKM = tenkm,
+                    MaLoaiKM = maloai,
+                    NgayBatDau = ngaybd,
+                    NgayKetThuc = ngaykt,
+                    DieuKien = new DieuKien()
+                    {
 
+                        SanPham = sanPhamList,
+                        SoLuongToiThieu = sltt,
+
+                    },
+                    GiamGia = giamgia,
+                }; 
+
+                var daokm = new DAO_KhuyenMai_Tab1();
+                bool isAdded = await daokm.UpdateKhuyenMai(km);
+                if (isAdded)
+                {
+                    MessageBox.Show("Sửa khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Sửa Khuyến mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }    
+                 
         }
 
         private async void ThemKhuyenMai_Tab3()
@@ -285,33 +404,67 @@ namespace promotion_management_app.GUI
             decimal tttt = decimal.Parse(txtTongTienTT_Tab3.Text);
             float giamgia = float.Parse(Giamgia_Tab3.Text);
 
-            KhuyenMai km = new KhuyenMai()
+            if(string.IsNullOrEmpty(makm))
             {
-                MaKM = GenerateRandomKhuyenMaiId(),
-                TenKM = tenkm,
-                MaLoaiKM = maloai,
-                NgayBatDau = ngaybd,
-                NgayKetThuc = ngaykt,
-                DieuKien = new DieuKien()
-                {                  
-                    TongTienToiThieu = tttt,
-                },
-                GiamGia = giamgia,
-            };
+                KhuyenMai km = new KhuyenMai()
+                {
+                    MaKM = GenerateRandomKhuyenMaiId(),
+                    TenKM = tenkm,
+                    MaLoaiKM = maloai,
+                    NgayBatDau = ngaybd,
+                    NgayKetThuc = ngaykt,
+                    DieuKien = new DieuKien()
+                    {
+                        TongTienToiThieu = tttt,
+                    },
+                    GiamGia = giamgia,
+                };
 
 
-            // Gọi hàm thêm khách hàng
-            var daokm = new DAO_KhuyenMai_Tab1();
-            bool isAdded = await daokm.AddKhuyenMai(km);
+                // Gọi hàm thêm khách hàng
+                var daokm = new DAO_KhuyenMai_Tab1();
+                bool isAdded = await daokm.AddKhuyenMai(km);
 
-            if (isAdded)
-            {
-                MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                if (isAdded)
+                {
+                    MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Thêm Khuyến Mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }  
             else
             {
-                MessageBox.Show("Thêm khách hàng thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                KhuyenMai km = new KhuyenMai()
+                {
+                    MaKM = makm,
+                    TenKM = tenkm,
+                    MaLoaiKM = maloai,
+                    NgayBatDau = ngaybd,
+                    NgayKetThuc = ngaykt,
+                    DieuKien = new DieuKien()
+                    {
+                        TongTienToiThieu = tttt,
+                    },
+                    GiamGia = giamgia,
+                };
+
+
+                // Gọi hàm thêm khách hàng
+                var daokm = new DAO_KhuyenMai_Tab1();
+                bool isAdded = await daokm.UpdateKhuyenMai(km);
+
+                if (isAdded)
+                {
+                    MessageBox.Show("Sửa khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Sửa Khuyến Mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }    
+            
 
         }
 
@@ -319,7 +472,7 @@ namespace promotion_management_app.GUI
         {
             string makm = MaKM_Tab2.Text;
             string tenkm = TenKM_Tab2.Text;
-            string maloai = cbbkhuyenmai_Tab3.SelectedValue.ToString();
+            string maloai = cbbkhuyenmai_Tab2.SelectedValue.ToString();
             // Thiết lập định dạng cho DateTimePicker
             NgayBD_Tab3.Format = DateTimePickerFormat.Custom;
             NgayBD_Tab3.CustomFormat = "dd/MM/yyyy";
@@ -357,36 +510,70 @@ namespace promotion_management_app.GUI
                 };
                 SanPhamQT.Add(sp);
             }
-            KhuyenMai km = new KhuyenMai()
+            if(string.IsNullOrEmpty(makm))
             {
-                MaKM = GenerateRandomKhuyenMaiId(),
-                TenKM = tenkm,
-                MaLoaiKM = maloai,
-                NgayBatDau = ngaybd,
-                NgayKetThuc = ngaykt,
-                DieuKien = new DieuKien()
+                KhuyenMai km = new KhuyenMai()
                 {
-                    SanPham = SanPhamMua,
-                    SoLuongToiThieu = sltt,
-                },
-                QuaTang = SanPhamQT,
-               
-            };
-            
-             
-            // Gọi hàm thêm khách hàng
-            var daokm = new DAO_KhuyenMai_Tab1();
-            bool isAdded = await daokm.AddKhuyenMai(km);
+                    MaKM = GenerateRandomKhuyenMaiId(),
+                    TenKM = tenkm,
+                    MaLoaiKM = maloai,
+                    NgayBatDau = ngaybd,
+                    NgayKetThuc = ngaykt,
+                    DieuKien = new DieuKien()
+                    {
+                        SanPham = SanPhamMua,
+                        SoLuongToiThieu = sltt,
+                    },
+                    QuaTang = SanPhamQT,
 
-            if (isAdded)
-            {
-                MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                };
+
+
+                // Gọi hàm thêm khách hàng
+                var daokm = new DAO_KhuyenMai_Tab1();
+                bool isAdded = await daokm.AddKhuyenMai(km);
+
+                if (isAdded)
+                {
+                    MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Thêm khuyến mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }  
             else
             {
-                MessageBox.Show("Thêm khách hàng thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                KhuyenMai km = new KhuyenMai()
+                {
+                    MaKM = makm,
+                    TenKM = tenkm,
+                    MaLoaiKM = maloai,
+                    NgayBatDau = ngaybd,
+                    NgayKetThuc = ngaykt,
+                    DieuKien = new DieuKien()
+                    {
+                        SanPham = SanPhamMua,
+                        SoLuongToiThieu = sltt,
+                    },
+                    QuaTang = SanPhamQT,
 
+                };
+
+
+                // Gọi hàm thêm khách hàng
+                var daokm = new DAO_KhuyenMai_Tab1();
+                bool isAdded = await daokm.UpdateKhuyenMai(km);
+
+                if (isAdded)
+                {
+                    MessageBox.Show("Sửa khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Sửa khuyến mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }    
         }
 
         private async void ThemKhuyenMai_Tab4()
@@ -435,37 +622,73 @@ namespace promotion_management_app.GUI
             //        GiamGia = float.Parse(dgview_Voucher_Tab4.Rows[0].Cells[3].Value.ToString())
             // };
 
-               
-           
-            KhuyenMai km = new KhuyenMai()
+
+            if (string.IsNullOrEmpty(makm))
             {
-                MaKM = GenerateRandomKhuyenMaiId(),
-                TenKM = tenkm,
-                MaLoaiKM = maloai,
-                NgayBatDau = ngaybd,
-                NgayKetThuc = ngaykt,
-                DieuKien = new DieuKien()
+                KhuyenMai km = new KhuyenMai()
                 {
-                    SanPham = SanPhamMua,
-                    SoLuongToiThieu = sltt,
-                }, 
-                Voucher=vc,
+                    MaKM = GenerateRandomKhuyenMaiId(),
+                    TenKM = tenkm,
+                    MaLoaiKM = maloai,
+                    NgayBatDau = ngaybd,
+                    NgayKetThuc = ngaykt,
+                    DieuKien = new DieuKien()
+                    {
+                        SanPham = SanPhamMua,
+                        SoLuongToiThieu = sltt,
+                    },
+                    Voucher = vc,
 
-            };
+                };
 
 
-            // Gọi hàm thêm khách hàng
-            var daokm = new DAO_KhuyenMai_Tab1();
-            bool isAdded = await daokm.AddKhuyenMai(km);
+                // Gọi hàm thêm khách hàng
+                var daokm = new DAO_KhuyenMai_Tab1();
+                bool isAdded = await daokm.AddKhuyenMai(km);
 
-            if (isAdded)
-            {
-                MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (isAdded)
+                {
+                    MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Thêm khách hàng thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Thêm khách hàng thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                KhuyenMai km = new KhuyenMai()
+                {
+                    MaKM = makm,
+                    TenKM = tenkm,
+                    MaLoaiKM = maloai,
+                    NgayBatDau = ngaybd,
+                    NgayKetThuc = ngaykt,
+                    DieuKien = new DieuKien()
+                    {
+                        SanPham = SanPhamMua,
+                        SoLuongToiThieu = sltt,
+                    },
+                    Voucher = vc,
+
+                };
+
+
+                // Gọi hàm thêm khách hàng
+                var daokm = new DAO_KhuyenMai_Tab1();
+                bool isAdded = await daokm.AddKhuyenMai(km);
+
+                if (isAdded)
+                {
+                    MessageBox.Show("Sửa khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Sửa khuyến mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+                
+            
 
         }
         private string GenerateRandomKhuyenMaiId()
@@ -499,25 +722,26 @@ namespace promotion_management_app.GUI
         {
             var daoKhuyenMai = new DAO_KhuyenMai_Tab1();
             List<KhuyenMai> khuyenMaiList = daoKhuyenMai.GetListKhuyenMai();
-            dgvPro.DataSource = khuyenMaiList;
+            dgv_ALLkhuyenmai.DataSource = khuyenMaiList;
         }
 
         private async void dgvPro_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                var column = dgvPro.Columns[e.ColumnIndex].Name;
+                var column = dgv_ALLkhuyenmai.Columns[e.ColumnIndex].Name;
                 if (column == "btn_Sua")
                 {
-                    var selectedRow = dgvPro.Rows[e.RowIndex];
+                    var selectedRow = dgv_ALLkhuyenmai.Rows[e.RowIndex];
                     string maKM = selectedRow.Cells["MaKM"].Value.ToString();
                     string tenKM = selectedRow.Cells["TenKM"].Value.ToString();
                     string maLoai = selectedRow.Cells["MaLoaiKM"].Value.ToString();
+                   // string hinhthuc= selectedRow.Cells["HinhThuc"].Value.ToString();
                     DateTime ngayBatDau = Convert.ToDateTime(selectedRow.Cells["NgayBatDau"].Value);
                     DateTime ngayKetThuc = Convert.ToDateTime(selectedRow.Cells["NgayKetThuc"].Value);
                     double giamGia = double.Parse(selectedRow.Cells["GiamGia"].Value.ToString());
 
-                    if (maLoai == "LoaiKM01")
+                    if (maLoai == "LoaiKM03")
                     {
                         tabPromotion.SelectedTab = LKM01;
                         MaKM_Tab3.Text = maKM;
@@ -525,7 +749,7 @@ namespace promotion_management_app.GUI
                         NgayBD_Tab3.Value = ngayBatDau;
                         NgayKT_Tab3.Value = ngayKetThuc;
                         Giamgia_Tab3.Text = giamGia.ToString();
-                        cbbkhuyenmai_Tab3.SelectedIndex = 0;
+                       // cbbkhuyenmai_Tab3.SelectedIndex = 0;
                         //DieuKien
                         if (selectedRow.Cells["DieuKien"].Value != null)
                         {
@@ -536,15 +760,16 @@ namespace promotion_management_app.GUI
                             }
                         }
                     }
-                    else if (maLoai == "LoaiKM02")
+                    else if (maLoai == "LoaiKM01")
                     {
                         tabPromotion.SelectedTab = LKM02;
                         txtMaKM_Tab1.Text = maKM;
                         txtTenKM_Tab1.Text = tenKM;
+                       // txtHinhThuc_Tab1.Text=hinhthuc;
                         date_NgayBD_Tab1.Value = ngayBatDau;
                         date_KetThuc_Tab1.Value = ngayKetThuc;
                         txtGiamGia_Tab1.Text = giamGia.ToString();
-                        cbbkhuyenmai_Tab3.SelectedIndex = 1;
+                        //cbbkhuyenmai_Tab3.SelectedIndex = 1;
                         //DieuKien
                         if (selectedRow.Cells["DieuKien"].Value != null)
                         {
@@ -564,14 +789,14 @@ namespace promotion_management_app.GUI
                             }
                         }
                     }
-                    else if (maLoai == "LoaiKM03")
+                    else if (maLoai == "LoaiKM02")
                     {
                         tabPromotion.SelectedTab = LKM03;
                         MaKM_Tab2.Text = maKM;
                         TenKM_Tab2.Text = tenKM;
                         NgayBD_Tab2.Value = ngayBatDau;
                         NgayKT_Tab2.Value = ngayKetThuc;
-                        cbbkhuyenmai_Tab3.SelectedIndex = 2;
+                       // cbbkhuyenmai_Tab3.SelectedIndex = 2;
                         //DieuKien
                         if (selectedRow.Cells["DieuKien"].Value != null)
                         {
@@ -611,7 +836,7 @@ namespace promotion_management_app.GUI
                         TenKM_Tab4.Text = tenKM;
                         NgayBD_Tab4.Value = ngayBatDau;
                         NgayKT_Tab4.Value = ngayKetThuc;
-                        cbbkhuyenmai_Tab4.SelectedIndex = 3;
+                       // cbbkhuyenmai_Tab4.SelectedIndex = 3;
                         //DieuKien
                         if (selectedRow.Cells["DieuKien"].Value != null)
                         {
@@ -645,7 +870,7 @@ namespace promotion_management_app.GUI
                 }
                 if (column == "btn_Xoa")
                 {
-                    string maKM = dgvPro.Rows[e.RowIndex].Cells["MaKM"].Value.ToString();
+                    string maKM = dgv_ALLkhuyenmai.Rows[e.RowIndex].Cells["MaKM"].Value.ToString();
                     var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa khuyến mãi này?",
                                                         "Xác nhận xóa",
                                                         MessageBoxButtons.YesNo);
@@ -657,7 +882,7 @@ namespace promotion_management_app.GUI
                         if (isDeleted)
                         {
                             MessageBox.Show("Xóa khuyến mãi thành công");
-                            BindingSource bs = dgvPro.DataSource as BindingSource;
+                            BindingSource bs = dgv_ALLkhuyenmai.DataSource as BindingSource;
                             if (bs != null)
                             {
                                 var khuyenMai = bs.List.Cast<KhuyenMai>().FirstOrDefault(km => km.MaKM == maKM);
@@ -679,6 +904,51 @@ namespace promotion_management_app.GUI
         private void btnReload_Click(object sender, EventArgs e)
         {
             viewDataPromotion();
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            XoaText();
+            dgviewm_listSanPham.DataSource = null;
+            dgviewm_listSanPham.Refresh();
+        }
+
+        private void BtnLamMoi_Tab4_Click(object sender, EventArgs e)
+        {
+            dgview_SP_Tab4.DataSource= null;
+            XoaText_Tab4();
+        }
+
+        private void BtnLamMoi_Tab3_Click(object sender, EventArgs e)
+        {
+            XoaText_Tab3();
+        }
+
+        private void BtnLamMoi_Tab2_Click(object sender, EventArgs e)
+        {
+            XoaText_Tab2();
+            dgview_Sp_Tab2.DataSource = null;
+            dgview_QuaTang_Tab2.DataSource=null;
+        }
+
+        private void cbb_TimKiemKhuyenMai_SelectedValueChanged(object sender, EventArgs e)
+        {           
+            if (cbb_TimKiemKhuyenMai.SelectedIndex==0)
+            {
+                dgv_ALLkhuyenmai.DataSource = khuyenMaiList;              
+            }
+            else
+            {
+                List<KhuyenMai> km = khuyenMaiList.Where(k => k.MaLoaiKM == cbb_TimKiemKhuyenMai.SelectedValue.ToString()).ToList();
+                dgv_ALLkhuyenmai.DataSource = km;
+            }            
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string texttimkiem=txtSearch.Text;
+            List<KhuyenMai> km = khuyenMaiList.Where(k=>k.TenKM.Contains(texttimkiem)).ToList();
+            dgv_ALLkhuyenmai.DataSource = km;
         }
     }
 

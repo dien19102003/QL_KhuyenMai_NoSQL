@@ -50,6 +50,14 @@ namespace promotion_management_app.DAO
             var khuyenMaiList = collection.Find(Builders<KhuyenMai>.Filter.Empty)
                 .Project<KhuyenMai>(projection)
                 .ToList();
+            TimeZoneInfo vietNamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+
+            foreach (var km in khuyenMaiList)
+            {              
+                km.NgayBatDau = TimeZoneInfo.ConvertTimeFromUtc(km.NgayBatDau, vietNamTimeZone);
+                km.NgayKetThuc = TimeZoneInfo.ConvertTimeFromUtc(km.NgayKetThuc, vietNamTimeZone);
+                km.GiamGia = (float)Math.Round(km.GiamGia, 2);
+            }
 
             return khuyenMaiList;
         }
@@ -69,6 +77,32 @@ namespace promotion_management_app.DAO
                 return false;
             }
         }
+        // Cập nhật khuyến mãi
+        public async Task<bool> UpdateKhuyenMai(KhuyenMai khuyenMai)
+        {
+            try
+            {
+                var filter = Builders<KhuyenMai>.Filter.Eq(x => x.MaKM, khuyenMai.MaKM);             
+                var update = Builders<KhuyenMai>.Update
+                    .Set(x => x.TenKM, khuyenMai.TenKM)
+                    .Set(x => x.MaLoaiKM, khuyenMai.MaLoaiKM)
+                    .Set(x => x.NgayBatDau, khuyenMai.NgayBatDau)
+                    .Set(x => x.NgayKetThuc, khuyenMai.NgayKetThuc)
+                    .Set(x => x.GiamGia, khuyenMai.GiamGia)
+                    .Set(x => x.DieuKien, khuyenMai.DieuKien)
+                    .Set(x => x.QuaTang, khuyenMai.QuaTang) 
+                    .Set(x => x.Voucher, khuyenMai.Voucher); 
+            
+                var result = await _KhuyenMaiCollection.UpdateOneAsync(filter, update);              
+                return result.ModifiedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error while updating khuyen mai: {ex.Message}");
+                return false;
+            }
+        }
+
 
         //Delete Km
         // Hàm xóa một khuyến mãi dựa trên MaKM
