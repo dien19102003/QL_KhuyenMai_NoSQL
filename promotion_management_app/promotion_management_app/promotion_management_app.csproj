@@ -212,12 +212,6 @@
     <Compile Include="GUI\Form_Menu.Designer.cs">
       <DependentUpon>Form_Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Form_Promotion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Form_Promotion.Designer.cs">
-      <DependentUpon>Form_Promotion.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Form_RecoverDB.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,9 +249,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form_Menu.resx">
       <DependentUpon>Form_Menu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Form_Promotion.resx">
-      <DependentUpon>Form_Promotion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form_RecoverDB.resx">
       <DependentUpon>Form_RecoverDB.cs</DependentUpon>

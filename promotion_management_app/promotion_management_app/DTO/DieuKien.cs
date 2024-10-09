@@ -11,8 +11,7 @@ namespace promotion_management_app.DTO
     public class DieuKien
     {
         //Dành cho sản phẩm
-        [BsonIgnoreIfNull]
-        public virtual ICollection<SanPham> SanPham { get; set; } = null;
+        public virtual List<SanPham> SanPham { get; set; } = new List<SanPham>();
         [BsonIgnoreIfNull]
         public int?  SoLuongToiThieu { get; set; }
         [BsonIgnoreIfNull]

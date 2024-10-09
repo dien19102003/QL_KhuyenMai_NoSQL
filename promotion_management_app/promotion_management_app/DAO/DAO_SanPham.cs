@@ -39,7 +39,6 @@ namespace promotion_management_app.DAO
 
             return productList;
         }
-
         // Phương thức để lấy sản phẩm theo mã sản phẩm
         public async Task<SanPham> GetSanPhamByMaSP(string maSP)
         {

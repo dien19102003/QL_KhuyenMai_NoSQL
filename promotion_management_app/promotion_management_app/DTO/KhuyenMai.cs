@@ -15,8 +15,8 @@ namespace promotion_management_app.DTO
         public DateTime NgayBatDau {  get; set; }
         public DateTime NgayKetThuc { get; set; }
 
-        public float GiamGia {  get; set; }
-        public   DieuKien  DieuKien {  get; set; }
+        public double GiamGia {  get; set; }
+        public  DieuKien  DieuKien {  get; set; }
         //Quà tặng
         [BsonIgnoreIfNull]
         public virtual ICollection<SanPham> QuaTang { get; set; }

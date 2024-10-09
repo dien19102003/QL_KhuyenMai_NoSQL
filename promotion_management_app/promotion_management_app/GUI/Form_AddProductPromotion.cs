@@ -83,7 +83,7 @@ namespace promotion_management_app.GUI
                     {
                         MaSP = row.Cells["MaSP"].Value.ToString(),
                         TenSP = row.Cells["TenSP"].Value.ToString(),
-                        GiaBan = Convert.ToDecimal(row.Cells["GiaBan"].Value)
+                        GiaBan = Convert.ToInt32(row.Cells["GiaBan"].Value)
                     };
                     // Thêm sản phẩm vào danh sách
                     sanPhamThemList.Add(sanPham);

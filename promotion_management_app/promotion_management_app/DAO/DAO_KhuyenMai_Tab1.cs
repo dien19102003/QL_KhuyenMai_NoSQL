@@ -1,10 +1,13 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
 using promotion_management_app.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static promotion_management_app.DTO.DTO_SanPham;
 
 namespace promotion_management_app.DAO
 {
@@ -18,6 +21,39 @@ namespace promotion_management_app.DAO
             var database = client.GetDatabase(ConnectDatabase.databaseName);
             _KhuyenMaiCollection = database.GetCollection<KhuyenMai>("KhuyenMai"); // Tên collection
         }
+
+        internal IMongoCollection<KhuyenMai> GetCollectionKhuyenMai()
+        {
+            var client = new MongoClient(ConnectDatabase.connectionString);
+            var database = client.GetDatabase(ConnectDatabase.databaseName);
+            return database.GetCollection<KhuyenMai>("KhuyenMai");
+        }
+
+        // Lấy tất cả khuyến mãi
+        internal List<KhuyenMai> GetListKhuyenMai()
+        {
+            var collection = GetCollectionKhuyenMai(); // lấy collection từ MongoDB
+
+            // Projection (only include the fields you need)
+            var projection = Builders<KhuyenMai>.Projection
+                .Include(x => x.MaKM)
+                .Include(x => x.TenKM)
+                .Include(x => x.MaLoaiKM)
+                .Include(x => x.NgayBatDau)
+                .Include(x => x.NgayKetThuc)
+                .Include(x => (float)x.GiamGia)
+                .Include(x => x.DieuKien.TongTienToiThieu)
+                .Include(x => x.DieuKien.SoLuongToiThieu)
+                .Include(x => x.DieuKien.SanPham)
+                .Include(x => x.QuaTang)
+                .Include(x => x.Voucher);
+            var khuyenMaiList = collection.Find(Builders<KhuyenMai>.Filter.Empty)
+                .Project<KhuyenMai>(projection)
+                .ToList();
+
+            return khuyenMaiList;
+        }
+
 
         //Thêm khuyến mãi 
         public async Task<bool> AddKhuyenMai(KhuyenMai khuyenMai)

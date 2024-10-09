@@ -279,7 +279,7 @@ namespace promotion_management_app.GUI
 
             Label priceLabel = new Label
             {
-                Text = $"{MyLib.AddCommas(product.GiaBan):C}",
+                Text = $"{product.GiaBan}",
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Top,
                 ForeColor = Color.White

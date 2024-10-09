@@ -36,7 +36,9 @@ namespace promotion_management_app.GUI
             MaKM_Tab3.Enabled=false;
             MaKM_Tab4.Enabled=false;
             MaKM_Tab2.Enabled=false;
-            LoadCBB();          
+            LoadCBB();
+            viewDataPromotion();
+            
         }
         
         public void AddVoucher(Voucher voucher)
@@ -222,7 +224,7 @@ namespace promotion_management_app.GUI
                 {
                     MaSP = item.Cells[0].Value.ToString(),
                     TenSP = item.Cells[1].Value.ToString(),
-                    GiaBan = Decimal.Parse(item.Cells[2].Value.ToString())
+                    GiaBan = int.Parse(item.Cells[2].Value.ToString())
                 };
                 sanPhamList.Add(sp);
 
@@ -338,7 +340,7 @@ namespace promotion_management_app.GUI
                 {
                     MaSP = item.Cells[0].Value.ToString(),
                     TenSP = item.Cells[1].Value.ToString(),
-                    GiaBan = Decimal.Parse(item.Cells[2].Value.ToString())
+                    GiaBan = int.Parse(item.Cells[2].Value.ToString())
                 };
                 SanPhamMua.Add(sp);
 
@@ -351,7 +353,7 @@ namespace promotion_management_app.GUI
                 {
                     MaSP = item.Cells[0].Value.ToString(),
                     TenSP = item.Cells[1].Value.ToString(),
-                    GiaBan = Decimal.Parse(item.Cells[2].Value.ToString())
+                    GiaBan = int.Parse(item.Cells[2].Value.ToString())
                 };
                 SanPhamQT.Add(sp);
             }
@@ -403,8 +405,8 @@ namespace promotion_management_app.GUI
             DateTime ngaykt = date_KetThuc_Tab1.Value;
 
             string hinhthuc = HinhThuc_Tab4.Text;
-            int sltt = int.Parse(sltt_Tab4.Text);
-
+            int? sltt = int.Parse(sltt_Tab4.Text);
+            
             List<SanPham> SanPhamMua = new List<SanPham>();
             foreach (DataGridViewRow item in dgview_SP_Tab4.Rows)
             {
@@ -412,7 +414,7 @@ namespace promotion_management_app.GUI
                 {
                     MaSP = item.Cells[0].Value.ToString(),
                     TenSP = item.Cells[1].Value.ToString(),
-                    GiaBan = Decimal.Parse(item.Cells[2].Value.ToString())
+                    GiaBan = int.Parse(item.Cells[2].Value.ToString())
                 };
                 SanPhamMua.Add(sp);
 
@@ -492,5 +494,153 @@ namespace promotion_management_app.GUI
         {
             ThemKhuyenMai_Tab4();
         }
+
+        private void viewDataPromotion()
+        {
+            var daoKhuyenMai = new DAO_KhuyenMai_Tab1();
+            List<KhuyenMai> khuyenMaiList = daoKhuyenMai.GetListKhuyenMai();
+            dgvPro.DataSource = khuyenMaiList;
+        }
+
+        private void dgvPro_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var selectedRow = dgvPro.Rows[e.RowIndex];
+                string maKM = selectedRow.Cells["MaKM"].Value.ToString();
+                string tenKM = selectedRow.Cells["TenKM"].Value.ToString();
+                string maLoai = selectedRow.Cells["MaLoaiKM"].Value.ToString();
+                DateTime ngayBatDau = Convert.ToDateTime(selectedRow.Cells["NgayBatDau"].Value);
+                DateTime ngayKetThuc = Convert.ToDateTime(selectedRow.Cells["NgayKetThuc"].Value);
+                double giamGia = double.Parse(selectedRow.Cells["GiamGia"].Value.ToString());
+
+                if (maLoai == "LoaiKM01")
+                {
+                    tabPromotion.SelectedTab = LKM01;
+                    MaKM_Tab3.Text = maKM;
+                    TenKM_Tab3.Text = tenKM;
+                    NgayBD_Tab3.Value = ngayBatDau;
+                    NgayKT_Tab3.Value = ngayKetThuc;
+                    Giamgia_Tab3.Text = giamGia.ToString();
+                    cbbkhuyenmai_Tab3.SelectedIndex = 0;
+                    //DieuKien
+                    if (selectedRow.Cells["DieuKien"].Value != null)
+                    {
+                        var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
+                        if (dieukien != null)
+                        {
+                            txtTongTienTT_Tab3.Text = dieukien.TongTienToiThieu?.ToString();
+                        }
+                    }
+                }
+                else if (maLoai == "LoaiKM02")
+                {
+                    tabPromotion.SelectedTab = LKM02;
+                    txtMaKM_Tab1.Text = maKM;
+                    txtTenKM_Tab1.Text = tenKM;
+                    date_NgayBD_Tab1.Value = ngayBatDau;
+                    date_KetThuc_Tab1.Value = ngayKetThuc;
+                    txtGiamGia_Tab1.Text = giamGia.ToString();
+                    cbbkhuyenmai_Tab3.SelectedIndex = 1;
+                    //DieuKien
+                    if (selectedRow.Cells["DieuKien"].Value != null)
+                    {
+                        var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
+                        if (dieukien != null)
+                        {
+                            txtSoLuongTT_Tab1.Text = dieukien.SoLuongToiThieu?.ToString();
+                            //SanPham
+                            if (dieukien.SanPham != null && dieukien.SanPham.Count > 0)
+                            {
+                               dgviewm_listSanPham.Rows.Clear();
+                                foreach (var sanPham in dieukien.SanPham)
+                                {
+                                    dgviewm_listSanPham.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (maLoai == "LoaiKM03")
+                {
+                    tabPromotion.SelectedTab = LKM03;
+                    MaKM_Tab2.Text = maKM;
+                    TenKM_Tab2.Text = tenKM;
+                    NgayBD_Tab2.Value = ngayBatDau;
+                    NgayKT_Tab2.Value = ngayKetThuc;
+                    cbbkhuyenmai_Tab3.SelectedIndex = 2;
+                    //DieuKien
+                    if (selectedRow.Cells["DieuKien"].Value != null)
+                    {
+                        var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
+                        if (dieukien != null)
+                        {
+                            sltt_Tab2.Text = dieukien.SoLuongToiThieu?.ToString();
+                            //SanPham
+                            if (dieukien.SanPham != null && dieukien.SanPham.Count > 0)
+                            {
+                                dgview_Sp_Tab2.Rows.Clear();
+                                foreach (var sanPham in dieukien.SanPham)
+                                {
+                                    dgview_Sp_Tab2.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                                }
+                            }
+                        }
+                    }
+                    //QuaTang
+                    if (selectedRow.Cells["QuaTang"].Value != null)
+                    {
+                        var quaTang = selectedRow.Cells["QuaTang"].Value as ICollection<SanPham>;
+                        if (quaTang != null && quaTang.Count > 0)
+                        {
+                            dgview_QuaTang_Tab2.Rows.Clear();
+                            foreach (var sanPham in quaTang)
+                            {
+                                dgview_QuaTang_Tab2.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    tabPromotion.SelectedTab = LKM04;
+                    MaKM_Tab4.Text = maKM;
+                    TenKM_Tab4.Text = tenKM;
+                    NgayBD_Tab4.Value = ngayBatDau;
+                    NgayKT_Tab4.Value = ngayKetThuc;
+                    cbbkhuyenmai_Tab4.SelectedIndex = 3;
+                    //DieuKien
+                    if (selectedRow.Cells["DieuKien"].Value != null)
+                    {
+                        var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
+                        if (dieukien != null)
+                        {
+                            sltt_Tab4.Text = dieukien.SoLuongToiThieu?.ToString();
+                            tttt_Tab4.Text = dieukien.TongTienToiThieu?.ToString();
+                            //SanPham
+                            if (dieukien.SanPham != null)
+                            {
+                                dgview_SP_Tab4.Rows.Clear();
+                                foreach (var sanPham in dieukien.SanPham)
+                                {
+                                    dgview_SP_Tab4.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                                }
+                            }
+                        }
+                    }
+                    //QuaTang
+                    if (selectedRow.Cells["Voucher"].Value != null)
+                    {
+                        var voucher = selectedRow.Cells["Voucher"].Value as Voucher;
+                        if (voucher != null)
+                        {
+                            dgview_Voucher_Tab4.Rows.Clear();
+                            dgview_Voucher_Tab4.Rows.Add(voucher.GiftCode,voucher.GiamGia,voucher.NgayBatDau,voucher.NgayKetThuc);
+                        }
+                    }
+                }    
+            }
+        }
     }
+
 }

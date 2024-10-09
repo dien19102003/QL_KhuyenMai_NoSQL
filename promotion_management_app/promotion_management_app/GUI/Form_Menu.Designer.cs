@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace promotion_management_app.GUI
 {
-    partial class Form_Menu
+    partial class Form_Menu : Form
     {
         private System.ComponentModel.IContainer components = null;
 
