@@ -69,5 +69,23 @@ namespace promotion_management_app.DAO
                 return false;
             }
         }
+
+        //Delete Km
+        // Hàm xóa một khuyến mãi dựa trên MaKM
+        public async Task<bool> DeleteKhuyenMai(string maKM)
+        {
+            try
+            {
+                var filter = Builders<KhuyenMai>.Filter.Eq(x => x.MaKM, maKM);
+                var result = await _KhuyenMaiCollection.DeleteOneAsync(filter);
+                return result.DeletedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error while deleting promotion: {ex.Message}");
+                return false;
+            }
+        }
+
     }
 }

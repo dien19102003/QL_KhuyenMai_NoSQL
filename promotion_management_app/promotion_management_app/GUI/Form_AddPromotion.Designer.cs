@@ -83,6 +83,10 @@
             this.dataGridViewTextBoxColumn44 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgview_Voucher_Tab4 = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.MVC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NKT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TriGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
@@ -199,10 +203,6 @@
             this.btnLuu_Tab1 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.btnAddProduct_Tab1 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.tabPromotion = new Guna.UI2.WinForms.Guna2TabControl();
-            this.MVC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NKT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TriGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).BeginInit();
             this.tableLayoutPanel12.SuspendLayout();
@@ -519,6 +519,7 @@
             this.btnReload.Size = new System.Drawing.Size(110, 45);
             this.btnReload.TabIndex = 2;
             this.btnReload.Text = "Làm mới";
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // guna2ComboBox1
             // 
@@ -747,6 +748,34 @@
             this.dgview_Voucher_Tab4.ThemeStyle.RowsStyle.Height = 40;
             this.dgview_Voucher_Tab4.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgview_Voucher_Tab4.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // MVC
+            // 
+            this.MVC.DividerWidth = 1;
+            this.MVC.HeaderText = "Mã Voucher";
+            this.MVC.MinimumWidth = 6;
+            this.MVC.Name = "MVC";
+            this.MVC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // NBD
+            // 
+            this.NBD.DividerWidth = 1;
+            this.NBD.HeaderText = "Ngày Bắt Đầu";
+            this.NBD.MinimumWidth = 6;
+            this.NBD.Name = "NBD";
+            // 
+            // NKT
+            // 
+            this.NKT.DividerWidth = 1;
+            this.NKT.HeaderText = "Ngày Kết Thúc";
+            this.NKT.MinimumWidth = 6;
+            this.NKT.Name = "NKT";
+            // 
+            // TriGia
+            // 
+            this.TriGia.HeaderText = "Trị Giá";
+            this.TriGia.MinimumWidth = 6;
+            this.TriGia.Name = "TriGia";
             // 
             // tableLayoutPanel10
             // 
@@ -2897,34 +2926,6 @@
             this.tabPromotion.TabButtonSize = new System.Drawing.Size(200, 40);
             this.tabPromotion.TabIndex = 0;
             this.tabPromotion.TabMenuBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
-            // 
-            // MVC
-            // 
-            this.MVC.DividerWidth = 1;
-            this.MVC.HeaderText = "Mã Voucher";
-            this.MVC.MinimumWidth = 6;
-            this.MVC.Name = "MVC";
-            this.MVC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // NBD
-            // 
-            this.NBD.DividerWidth = 1;
-            this.NBD.HeaderText = "Ngày Bắt Đầu";
-            this.NBD.MinimumWidth = 6;
-            this.NBD.Name = "NBD";
-            // 
-            // NKT
-            // 
-            this.NKT.DividerWidth = 1;
-            this.NKT.HeaderText = "Ngày Kết Thúc";
-            this.NKT.MinimumWidth = 6;
-            this.NKT.Name = "NKT";
-            // 
-            // TriGia
-            // 
-            this.TriGia.HeaderText = "Trị Giá";
-            this.TriGia.MinimumWidth = 6;
-            this.TriGia.Name = "TriGia";
             // 
             // Form_AddPromotion
             // 

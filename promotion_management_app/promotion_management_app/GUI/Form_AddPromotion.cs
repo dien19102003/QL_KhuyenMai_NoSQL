@@ -502,144 +502,183 @@ namespace promotion_management_app.GUI
             dgvPro.DataSource = khuyenMaiList;
         }
 
-        private void dgvPro_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvPro_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                var selectedRow = dgvPro.Rows[e.RowIndex];
-                string maKM = selectedRow.Cells["MaKM"].Value.ToString();
-                string tenKM = selectedRow.Cells["TenKM"].Value.ToString();
-                string maLoai = selectedRow.Cells["MaLoaiKM"].Value.ToString();
-                DateTime ngayBatDau = Convert.ToDateTime(selectedRow.Cells["NgayBatDau"].Value);
-                DateTime ngayKetThuc = Convert.ToDateTime(selectedRow.Cells["NgayKetThuc"].Value);
-                double giamGia = double.Parse(selectedRow.Cells["GiamGia"].Value.ToString());
+                var column = dgvPro.Columns[e.ColumnIndex].Name;
+                if (column == "btn_Sua")
+                {
+                    var selectedRow = dgvPro.Rows[e.RowIndex];
+                    string maKM = selectedRow.Cells["MaKM"].Value.ToString();
+                    string tenKM = selectedRow.Cells["TenKM"].Value.ToString();
+                    string maLoai = selectedRow.Cells["MaLoaiKM"].Value.ToString();
+                    DateTime ngayBatDau = Convert.ToDateTime(selectedRow.Cells["NgayBatDau"].Value);
+                    DateTime ngayKetThuc = Convert.ToDateTime(selectedRow.Cells["NgayKetThuc"].Value);
+                    double giamGia = double.Parse(selectedRow.Cells["GiamGia"].Value.ToString());
 
-                if (maLoai == "LoaiKM01")
-                {
-                    tabPromotion.SelectedTab = LKM01;
-                    MaKM_Tab3.Text = maKM;
-                    TenKM_Tab3.Text = tenKM;
-                    NgayBD_Tab3.Value = ngayBatDau;
-                    NgayKT_Tab3.Value = ngayKetThuc;
-                    Giamgia_Tab3.Text = giamGia.ToString();
-                    cbbkhuyenmai_Tab3.SelectedIndex = 0;
-                    //DieuKien
-                    if (selectedRow.Cells["DieuKien"].Value != null)
+                    if (maLoai == "LoaiKM01")
                     {
-                        var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
-                        if (dieukien != null)
+                        tabPromotion.SelectedTab = LKM01;
+                        MaKM_Tab3.Text = maKM;
+                        TenKM_Tab3.Text = tenKM;
+                        NgayBD_Tab3.Value = ngayBatDau;
+                        NgayKT_Tab3.Value = ngayKetThuc;
+                        Giamgia_Tab3.Text = giamGia.ToString();
+                        cbbkhuyenmai_Tab3.SelectedIndex = 0;
+                        //DieuKien
+                        if (selectedRow.Cells["DieuKien"].Value != null)
                         {
-                            txtTongTienTT_Tab3.Text = dieukien.TongTienToiThieu?.ToString();
+                            var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
+                            if (dieukien != null)
+                            {
+                                txtTongTienTT_Tab3.Text = dieukien.TongTienToiThieu?.ToString();
+                            }
                         }
                     }
-                }
-                else if (maLoai == "LoaiKM02")
-                {
-                    tabPromotion.SelectedTab = LKM02;
-                    txtMaKM_Tab1.Text = maKM;
-                    txtTenKM_Tab1.Text = tenKM;
-                    date_NgayBD_Tab1.Value = ngayBatDau;
-                    date_KetThuc_Tab1.Value = ngayKetThuc;
-                    txtGiamGia_Tab1.Text = giamGia.ToString();
-                    cbbkhuyenmai_Tab3.SelectedIndex = 1;
-                    //DieuKien
-                    if (selectedRow.Cells["DieuKien"].Value != null)
+                    else if (maLoai == "LoaiKM02")
                     {
-                        var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
-                        if (dieukien != null)
+                        tabPromotion.SelectedTab = LKM02;
+                        txtMaKM_Tab1.Text = maKM;
+                        txtTenKM_Tab1.Text = tenKM;
+                        date_NgayBD_Tab1.Value = ngayBatDau;
+                        date_KetThuc_Tab1.Value = ngayKetThuc;
+                        txtGiamGia_Tab1.Text = giamGia.ToString();
+                        cbbkhuyenmai_Tab3.SelectedIndex = 1;
+                        //DieuKien
+                        if (selectedRow.Cells["DieuKien"].Value != null)
                         {
-                            txtSoLuongTT_Tab1.Text = dieukien.SoLuongToiThieu?.ToString();
-                            //SanPham
-                            if (dieukien.SanPham != null && dieukien.SanPham.Count > 0)
+                            var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
+                            if (dieukien != null)
                             {
-                               dgviewm_listSanPham.Rows.Clear();
-                                foreach (var sanPham in dieukien.SanPham)
+                                txtSoLuongTT_Tab1.Text = dieukien.SoLuongToiThieu?.ToString();
+                                //SanPham
+                                if (dieukien.SanPham != null && dieukien.SanPham.Count > 0)
                                 {
-                                    dgviewm_listSanPham.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                                    dgviewm_listSanPham.Rows.Clear();
+                                    foreach (var sanPham in dieukien.SanPham)
+                                    {
+                                        dgviewm_listSanPham.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                else if (maLoai == "LoaiKM03")
-                {
-                    tabPromotion.SelectedTab = LKM03;
-                    MaKM_Tab2.Text = maKM;
-                    TenKM_Tab2.Text = tenKM;
-                    NgayBD_Tab2.Value = ngayBatDau;
-                    NgayKT_Tab2.Value = ngayKetThuc;
-                    cbbkhuyenmai_Tab3.SelectedIndex = 2;
-                    //DieuKien
-                    if (selectedRow.Cells["DieuKien"].Value != null)
+                    else if (maLoai == "LoaiKM03")
                     {
-                        var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
-                        if (dieukien != null)
+                        tabPromotion.SelectedTab = LKM03;
+                        MaKM_Tab2.Text = maKM;
+                        TenKM_Tab2.Text = tenKM;
+                        NgayBD_Tab2.Value = ngayBatDau;
+                        NgayKT_Tab2.Value = ngayKetThuc;
+                        cbbkhuyenmai_Tab3.SelectedIndex = 2;
+                        //DieuKien
+                        if (selectedRow.Cells["DieuKien"].Value != null)
                         {
-                            sltt_Tab2.Text = dieukien.SoLuongToiThieu?.ToString();
-                            //SanPham
-                            if (dieukien.SanPham != null && dieukien.SanPham.Count > 0)
+                            var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
+                            if (dieukien != null)
                             {
-                                dgview_Sp_Tab2.Rows.Clear();
-                                foreach (var sanPham in dieukien.SanPham)
+                                sltt_Tab2.Text = dieukien.SoLuongToiThieu?.ToString();
+                                //SanPham
+                                if (dieukien.SanPham != null && dieukien.SanPham.Count > 0)
                                 {
-                                    dgview_Sp_Tab2.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                                    dgview_Sp_Tab2.Rows.Clear();
+                                    foreach (var sanPham in dieukien.SanPham)
+                                    {
+                                        dgview_Sp_Tab2.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                                    }
+                                }
+                            }
+                        }
+                        //QuaTang
+                        if (selectedRow.Cells["QuaTang"].Value != null)
+                        {
+                            var quaTang = selectedRow.Cells["QuaTang"].Value as ICollection<SanPham>;
+                            if (quaTang != null && quaTang.Count > 0)
+                            {
+                                dgview_QuaTang_Tab2.Rows.Clear();
+                                foreach (var sanPham in quaTang)
+                                {
+                                    dgview_QuaTang_Tab2.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
                                 }
                             }
                         }
                     }
-                    //QuaTang
-                    if (selectedRow.Cells["QuaTang"].Value != null)
+                    else
                     {
-                        var quaTang = selectedRow.Cells["QuaTang"].Value as ICollection<SanPham>;
-                        if (quaTang != null && quaTang.Count > 0)
+                        tabPromotion.SelectedTab = LKM04;
+                        MaKM_Tab4.Text = maKM;
+                        TenKM_Tab4.Text = tenKM;
+                        NgayBD_Tab4.Value = ngayBatDau;
+                        NgayKT_Tab4.Value = ngayKetThuc;
+                        cbbkhuyenmai_Tab4.SelectedIndex = 3;
+                        //DieuKien
+                        if (selectedRow.Cells["DieuKien"].Value != null)
                         {
-                            dgview_QuaTang_Tab2.Rows.Clear();
-                            foreach (var sanPham in quaTang)
+                            var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
+                            if (dieukien != null)
                             {
-                                dgview_QuaTang_Tab2.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                                sltt_Tab4.Text = dieukien.SoLuongToiThieu?.ToString();
+                                tttt_Tab4.Text = dieukien.TongTienToiThieu?.ToString();
+                                //SanPham
+                                if (dieukien.SanPham != null)
+                                {
+                                    dgview_SP_Tab4.Rows.Clear();
+                                    foreach (var sanPham in dieukien.SanPham)
+                                    {
+                                        dgview_SP_Tab4.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                                    }
+                                }
+                            }
+                        }
+                        //QuaTang
+                        if (selectedRow.Cells["Voucher"].Value != null)
+                        {
+                            var voucher = selectedRow.Cells["Voucher"].Value as Voucher;
+                            if (voucher != null)
+                            {
+                                dgview_Voucher_Tab4.Rows.Clear();
+                                dgview_Voucher_Tab4.Rows.Add(voucher.GiftCode, voucher.GiamGia, voucher.NgayBatDau, voucher.NgayKetThuc);
                             }
                         }
                     }
                 }
-                else
+                if (column == "btn_Xoa")
                 {
-                    tabPromotion.SelectedTab = LKM04;
-                    MaKM_Tab4.Text = maKM;
-                    TenKM_Tab4.Text = tenKM;
-                    NgayBD_Tab4.Value = ngayBatDau;
-                    NgayKT_Tab4.Value = ngayKetThuc;
-                    cbbkhuyenmai_Tab4.SelectedIndex = 3;
-                    //DieuKien
-                    if (selectedRow.Cells["DieuKien"].Value != null)
+                    string maKM = dgvPro.Rows[e.RowIndex].Cells["MaKM"].Value.ToString();
+                    var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa khuyến mãi này?",
+                                                        "Xác nhận xóa",
+                                                        MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
                     {
-                        var dieukien = selectedRow.Cells["DieuKien"].Value as DieuKien;
-                        if (dieukien != null)
+                        var daoKhuyenMai = new DAO_KhuyenMai_Tab1();
+                        bool isDeleted = await daoKhuyenMai.DeleteKhuyenMai(maKM);
+
+                        if (isDeleted)
                         {
-                            sltt_Tab4.Text = dieukien.SoLuongToiThieu?.ToString();
-                            tttt_Tab4.Text = dieukien.TongTienToiThieu?.ToString();
-                            //SanPham
-                            if (dieukien.SanPham != null)
+                            MessageBox.Show("Xóa khuyến mãi thành công");
+                            BindingSource bs = dgvPro.DataSource as BindingSource;
+                            if (bs != null)
                             {
-                                dgview_SP_Tab4.Rows.Clear();
-                                foreach (var sanPham in dieukien.SanPham)
+                                var khuyenMai = bs.List.Cast<KhuyenMai>().FirstOrDefault(km => km.MaKM == maKM);
+                                if (khuyenMai != null)
                                 {
-                                    dgview_SP_Tab4.Rows.Add(sanPham.MaSP, sanPham.TenSP, sanPham.GiaBan);
+                                    bs.Remove(khuyenMai); 
                                 }
                             }
                         }
-                    }
-                    //QuaTang
-                    if (selectedRow.Cells["Voucher"].Value != null)
-                    {
-                        var voucher = selectedRow.Cells["Voucher"].Value as Voucher;
-                        if (voucher != null)
+                        else
                         {
-                            dgview_Voucher_Tab4.Rows.Clear();
-                            dgview_Voucher_Tab4.Rows.Add(voucher.GiftCode,voucher.GiamGia,voucher.NgayBatDau,voucher.NgayKetThuc);
+                            MessageBox.Show("Không thể xóa khuyến mãi");
                         }
                     }
-                }    
+                }
             }
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            viewDataPromotion();
         }
     }
 
