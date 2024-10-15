@@ -1,6 +1,8 @@
-﻿namespace promotion_management_app.GUI
+﻿using System.Windows.Forms;
+
+namespace promotion_management_app.GUI
 {
-    partial class Form_AddProductPromotion
+    partial class Form_AddProductPromotion : Form
     {
         /// <summary>
         /// Required designer variable.

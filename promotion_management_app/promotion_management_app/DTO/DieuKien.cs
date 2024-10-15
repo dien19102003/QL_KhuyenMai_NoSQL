@@ -14,9 +14,10 @@ namespace promotion_management_app.DTO
         public virtual List<SanPham> SanPham { get; set; } = new List<SanPham>();
         [BsonIgnoreIfNull]
         public int?  SoLuongToiThieu { get; set; }
-        [BsonIgnoreIfNull]
+
 
         //Dành cho hoá đơn
-        public decimal?  TongTienToiThieu { get; set; }
+        [BsonIgnoreIfNull]
+        public double?  TongTienToiThieu { get; set; }
     }
 }

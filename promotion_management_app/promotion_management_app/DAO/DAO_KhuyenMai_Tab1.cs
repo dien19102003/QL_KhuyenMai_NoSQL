@@ -30,7 +30,7 @@ namespace promotion_management_app.DAO
         }
 
         // Lấy tất cả khuyến mãi
-        internal List<KhuyenMai> GetListKhuyenMai()
+        public List<KhuyenMai> GetListKhuyenMai()
         {
             var collection = GetCollectionKhuyenMai(); // lấy collection từ MongoDB
 
@@ -120,6 +120,34 @@ namespace promotion_management_app.DAO
                 return false;
             }
         }
+        //Tìm dựa trên mã voucher
+        public KhuyenMai GetValidKhuyenMaiByGiftCode(string giftCode)
+        {
+            var filter = Builders<KhuyenMai>.Filter.Eq(x => x.Voucher.GiftCode, giftCode);
+            var khuyenMai = _KhuyenMaiCollection.Find(filter).FirstOrDefault();
 
+            if (khuyenMai != null)
+            {
+                // Lấy ngày hiện tại
+                DateTime currentDate = DateTime.Now;
+
+                // Kiểm tra điều kiện ngày hiện tại nằm trong khoảng từ Ngày bắt đầu đến Ngày kết thúc của Voucher
+                if (khuyenMai.Voucher != null &&
+                    currentDate >= khuyenMai.Voucher.NgayBatDau &&
+                    currentDate <= khuyenMai.Voucher.NgayKetThuc)
+                {
+                    // Chuyển đổi múi giờ nếu cần
+                    TimeZoneInfo vietNamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                    khuyenMai.NgayBatDau = TimeZoneInfo.ConvertTimeFromUtc(khuyenMai.NgayBatDau, vietNamTimeZone);
+                    khuyenMai.NgayKetThuc = TimeZoneInfo.ConvertTimeFromUtc(khuyenMai.NgayKetThuc, vietNamTimeZone);
+                    khuyenMai.GiamGia = (float)Math.Round(khuyenMai.GiamGia, 2);
+
+                    return khuyenMai;
+                }
+            }
+
+            // Nếu không tìm thấy hoặc điều kiện ngày không phù hợp, trả về null
+            return null;
+        }
     }
 }

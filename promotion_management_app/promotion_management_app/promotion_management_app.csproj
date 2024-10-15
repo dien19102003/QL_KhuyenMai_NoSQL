@@ -162,6 +162,7 @@
   <ItemGroup>
     <Compile Include="BASE\MyLib.cs" />
     <Compile Include="BASE\ConnectDatabase.cs" />
+    <Compile Include="DAO\DAO_HoaDon.cs" />
     <Compile Include="DAO\DAO_KhachHang.cs" />
     <Compile Include="DAO\DAO_KhuyenMai_Tab1.cs" />
     <Compile Include="DAO\DAO_LoaiKhuyenMai.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="DAO\DAO_SanPham.cs" />
     <Compile Include="DTO\DieuKien.cs" />
     <Compile Include="DTO\DTO_KhachHang.cs" />
+    <Compile Include="DTO\HoaDon.cs" />
     <Compile Include="DTO\KhuyenMai.cs" />
     <Compile Include="DTO\DTO_LoaiKhuyenMai.cs" />
     <Compile Include="DTO\DTO_LoaiSanPham.cs" />

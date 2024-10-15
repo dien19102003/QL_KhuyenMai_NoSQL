@@ -1,9 +1,9 @@
 ﻿using promotion_management_app.DAO;
+using promotion_management_app.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using static promotion_management_app.DTO.DTO_SanPham;
 
 namespace promotion_management_app.GUI
 {

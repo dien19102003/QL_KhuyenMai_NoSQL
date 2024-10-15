@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static promotion_management_app.DTO.DTO_KhachHang;
@@ -28,7 +29,7 @@ namespace promotion_management_app.GUI
 
         List<KhuyenMai> khuyenMaiList;
         
-
+        private Regex regex = new Regex(@"^[1-9]\d*$");
         public Form_AddPromotion(List<SanPham> sanPhamList)
         {
 
@@ -305,6 +306,60 @@ namespace promotion_management_app.GUI
             date_KetThuc_Tab1.CustomFormat = "dd/MM/yyyy";
             DateTime ngaykt = date_KetThuc_Tab1.Value;
 
+          
+            string hinhthuc = txtHinhThuc_Tab1.Text;
+
+            //Validate
+            if (String.IsNullOrWhiteSpace(tenkm))
+            {
+                MessageBox.Show("Vui lòng không để trống tên khuyến mãi!");
+                return;
+            }
+            if (String.IsNullOrWhiteSpace(maloai))
+            {
+                MessageBox.Show("Vui lòng không để trống loại khuyến mãi!");
+                return;
+            }
+            if (ngaybd > ngaykt)
+            {
+                MessageBox.Show("Ngày bắt đầu phải nhỏ hơn ngày kết thúc!");
+                return;
+            }
+            if (String.IsNullOrWhiteSpace(hinhthuc))
+            {
+                MessageBox.Show("Vui lòng không để trống hình thức khuyến mãi!");
+                return;
+            }
+            if (String.IsNullOrWhiteSpace(txtSoLuongTT_Tab1.Text))
+            {
+                MessageBox.Show("Vui lòng không để trống số lượng tối thiểu!");
+                return;
+            }
+            if (String.IsNullOrWhiteSpace(txtGiamGia_Tab1.Text))
+            {
+                MessageBox.Show("Vui lòng không để trống giảm giá!");
+                return;
+            }
+            if (!regex.IsMatch(txtSoLuongTT_Tab1.Text))
+            {
+                MessageBox.Show("Số lượng tối thiểu là số nguyên và lớn hơn không!");
+                return;
+            }
+            if (!regex.IsMatch(txtGiamGia_Tab1.Text))
+            {
+                MessageBox.Show("Giảm giá là số nguyên dương hơn hơn 0 và bé hơn hoặc bằng 100!");
+                return;
+            }
+            
+            int sltt = int.Parse(txtSoLuongTT_Tab1.Text);
+            float giamgia = float.Parse(txtGiamGia_Tab1.Text);
+
+            if(giamgia<0 || giamgia >100)
+            {
+                MessageBox.Show("Giảm giá là số nguyên dương hơn hơn 0 và bé hơn hoặc bằng 100!");
+                return;
+            }    
+
             List<SanPham> sanPhamList = new List<SanPham>();
             foreach (DataGridViewRow item in dgviewm_listSanPham.Rows)
             {
@@ -317,10 +372,12 @@ namespace promotion_management_app.GUI
                 sanPhamList.Add(sp);
 
             }
-            string hinhthuc = txtHinhThuc_Tab1.Text;
-            int sltt = int.Parse(txtSoLuongTT_Tab1.Text);
-            float giamgia = float.Parse(txtGiamGia_Tab1.Text);
-           
+            if(sanPhamList== null || sanPhamList.Count()==0)
+            {
+                MessageBox.Show("Chưa chọn sản phẩm khuyến mãi!");
+                return;
+            }    
+
             if (string.IsNullOrEmpty(makm))
             {
                 KhuyenMai km = new KhuyenMai()
@@ -337,7 +394,7 @@ namespace promotion_management_app.GUI
                         SoLuongToiThieu = sltt,
 
                     },
-                    GiamGia = giamgia,
+                    GiamGia = giamgia / 100,
                 };
                 // Gọi hàm thêm khách hàng
                 var daokm = new DAO_KhuyenMai_Tab1();
@@ -368,7 +425,7 @@ namespace promotion_management_app.GUI
                         SoLuongToiThieu = sltt,
 
                     },
-                    GiamGia = giamgia,
+                    GiamGia = giamgia / 100,
                 }; 
 
                 var daokm = new DAO_KhuyenMai_Tab1();
@@ -384,98 +441,16 @@ namespace promotion_management_app.GUI
             }    
                  
         }
-
-        private async void ThemKhuyenMai_Tab3()
-        {
-            string makm = MaKM_Tab3.Text;
-            string tenkm = TenKM_Tab3.Text;
-            string maloai = cbbkhuyenmai_Tab3.SelectedValue.ToString();
-            // Thiết lập định dạng cho DateTimePicker
-            NgayBD_Tab3.Format = DateTimePickerFormat.Custom;
-            NgayBD_Tab3.CustomFormat = "dd/MM/yyyy";
-            // Lấy giá trị từ DateTimePicker
-            DateTime ngaybd = date_NgayBD_Tab1.Value;
-
-            NgayKT_Tab3.Format = DateTimePickerFormat.Custom;
-            NgayKT_Tab3.CustomFormat = "dd/MM/yyyy";
-            DateTime ngaykt = date_KetThuc_Tab1.Value;
-
-            string hinhthuc = HinhThuc_Tab3.Text;
-            decimal tttt = decimal.Parse(txtTongTienTT_Tab3.Text);
-            float giamgia = float.Parse(Giamgia_Tab3.Text);
-
-            if(string.IsNullOrEmpty(makm))
-            {
-                KhuyenMai km = new KhuyenMai()
-                {
-                    MaKM = GenerateRandomKhuyenMaiId(),
-                    TenKM = tenkm,
-                    MaLoaiKM = maloai,
-                    NgayBatDau = ngaybd,
-                    NgayKetThuc = ngaykt,
-                    DieuKien = new DieuKien()
-                    {
-                        TongTienToiThieu = tttt,
-                    },
-                    GiamGia = giamgia,
-                };
-
-
-                // Gọi hàm thêm khách hàng
-                var daokm = new DAO_KhuyenMai_Tab1();
-                bool isAdded = await daokm.AddKhuyenMai(km);
-
-                if (isAdded)
-                {
-                    MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Thêm Khuyến Mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }  
-            else
-            {
-                KhuyenMai km = new KhuyenMai()
-                {
-                    MaKM = makm,
-                    TenKM = tenkm,
-                    MaLoaiKM = maloai,
-                    NgayBatDau = ngaybd,
-                    NgayKetThuc = ngaykt,
-                    DieuKien = new DieuKien()
-                    {
-                        TongTienToiThieu = tttt,
-                    },
-                    GiamGia = giamgia,
-                };
-
-
-                // Gọi hàm thêm khách hàng
-                var daokm = new DAO_KhuyenMai_Tab1();
-                bool isAdded = await daokm.UpdateKhuyenMai(km);
-
-                if (isAdded)
-                {
-                    MessageBox.Show("Sửa khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Sửa Khuyến Mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }    
-            
-
-        }
-
         private async void ThemKhuyenMai_Tab2()
         {
             string makm = MaKM_Tab2.Text;
             string tenkm = TenKM_Tab2.Text;
             string maloai = cbbkhuyenmai_Tab2.SelectedValue.ToString();
+
             // Thiết lập định dạng cho DateTimePicker
             NgayBD_Tab3.Format = DateTimePickerFormat.Custom;
             NgayBD_Tab3.CustomFormat = "dd/MM/yyyy";
+
             // Lấy giá trị từ DateTimePicker
             DateTime ngaybd = date_NgayBD_Tab1.Value;
 
@@ -483,7 +458,39 @@ namespace promotion_management_app.GUI
             NgayKT_Tab3.CustomFormat = "dd/MM/yyyy";
             DateTime ngaykt = date_KetThuc_Tab1.Value;
 
-            string hinhthuc = HinhThuc_Tab3.Text;
+            string hinhthuc = HinhThuc_Tab2.Text;
+
+            //Validate
+            if (String.IsNullOrWhiteSpace(tenkm))
+            {
+                MessageBox.Show("Vui lòng không để trống tên khuyến mãi!");
+                return;
+            }
+            if (String.IsNullOrWhiteSpace(maloai))
+            {
+                MessageBox.Show("Vui lòng không để trống loại khuyến mãi!");
+                return;
+            }
+            if (ngaybd > ngaykt)
+            {
+                MessageBox.Show("Ngày bắt đầu phải nhỏ hơn ngày kết thúc!");
+                return;
+            }
+            if (String.IsNullOrWhiteSpace(hinhthuc))
+            {
+                MessageBox.Show("Vui lòng không để trống hình thức khuyến mãi!");
+                return;
+            }
+            if(String.IsNullOrWhiteSpace(sltt_Tab2.Text))
+            {
+                 MessageBox.Show("Vui lòng không để trống số lượng tối thiểu!");
+                return;
+            }
+            if (!regex.IsMatch(sltt_Tab2.Text))
+            {
+                MessageBox.Show("Số lượng tối thiểu là số nguyên và lớn hơn không!");
+                return;
+            }
             int sltt = int.Parse(sltt_Tab2.Text);
 
             List<SanPham> SanPhamMua = new List<SanPham>();
@@ -510,7 +517,21 @@ namespace promotion_management_app.GUI
                 };
                 SanPhamQT.Add(sp);
             }
-            if(string.IsNullOrEmpty(makm))
+
+            if(SanPhamMua==null || SanPhamMua.Count()==0)
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm được khuyến mãi!");
+                return;
+               
+            }
+
+            if (SanPhamQT == null || SanPhamQT.Count() == 0)
+            {
+                 MessageBox.Show("Vui lòng chọn sản phẩm được tặng!");
+                 return;
+               
+            }
+            if (string.IsNullOrEmpty(makm))
             {
                 KhuyenMai km = new KhuyenMai()
                 {
@@ -541,7 +562,7 @@ namespace promotion_management_app.GUI
                 {
                     MessageBox.Show("Thêm khuyến mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }  
+            }
             else
             {
                 KhuyenMai km = new KhuyenMai()
@@ -573,8 +594,145 @@ namespace promotion_management_app.GUI
                 {
                     MessageBox.Show("Sửa khuyến mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }    
+            }
         }
+        private async void ThemKhuyenMai_Tab3()
+        {
+            string makm = MaKM_Tab3.Text;
+            string tenkm = TenKM_Tab3.Text;
+            string maloai = cbbkhuyenmai_Tab3.SelectedValue.ToString();
+            // Thiết lập định dạng cho DateTimePicker
+            NgayBD_Tab3.Format = DateTimePickerFormat.Custom;
+            NgayBD_Tab3.CustomFormat = "dd/MM/yyyy";
+            // Lấy giá trị từ DateTimePicker
+            DateTime ngaybd = date_NgayBD_Tab1.Value;
+
+            NgayKT_Tab3.Format = DateTimePickerFormat.Custom;
+            NgayKT_Tab3.CustomFormat = "dd/MM/yyyy";
+            DateTime ngaykt = date_KetThuc_Tab1.Value;
+
+            string hinhthuc = HinhThuc_Tab3.Text;
+
+            //Validate dữ liệu
+
+            if (String.IsNullOrWhiteSpace(tenkm))
+            {
+                MessageBox.Show("Vui lòng không để trống tên khuyến mãi!");
+                return;
+            }
+            if (String.IsNullOrWhiteSpace(maloai))
+            {
+                MessageBox.Show("Vui lòng không để trống loại khuyến mãi!");
+                return;
+            }
+            if (ngaybd > ngaykt)
+            {
+                MessageBox.Show("Ngày bắt đầu phải nhỏ hơn ngày kết thúc!");
+                return;
+            }
+            if (String.IsNullOrWhiteSpace(hinhthuc))
+            {
+                MessageBox.Show("Vui lòng không để trống hình thức khuyến mãi!"); 
+                return;
+            }
+            if (String.IsNullOrWhiteSpace(txtTongTienTT_Tab3.Text))
+            {
+                MessageBox.Show("Vui lòng không để trống số tiền tối thiểu!");
+                return;
+            }
+
+            //Kiểm tra số tiền tối thiểu và giảm giá phải là số nguyên dương
+            if(String.IsNullOrWhiteSpace(Giamgia_Tab3.Text))
+            {
+                MessageBox.Show("Vui lòng không phần trăm giảm giá!");
+                return;
+            }    
+
+            if(!regex.IsMatch(txtTongTienTT_Tab3.Text))
+            {
+                MessageBox.Show("Số tiền tối thiểu là số nguyên dương và lớp hơn không!");
+                return;
+            }    
+            if(!regex.IsMatch(Giamgia_Tab3.Text))
+            {
+                MessageBox.Show("Giảm giá là số nguyên dương và lớp hơn không!");
+                return;
+            }    
+            double tttt = double.Parse(txtTongTienTT_Tab3.Text);
+            float giamgia = float.Parse(Giamgia_Tab3.Text);
+
+            if(giamgia<=0 || giamgia>=100)
+            {
+                MessageBox.Show("Giảm giá lớn hơn 0 và bé hơn hoặc bằng 100!");
+                return;
+            }    
+
+            
+            if (string.IsNullOrEmpty(makm))
+            {
+                KhuyenMai km = new KhuyenMai()
+                {
+                    MaKM = GenerateRandomKhuyenMaiId(),
+                    TenKM = tenkm,
+                    MaLoaiKM = maloai,
+                    NgayBatDau = ngaybd,
+                    NgayKetThuc = ngaykt,
+                    DieuKien = new DieuKien()
+                    {
+                        TongTienToiThieu = tttt,
+                    },
+                    GiamGia = giamgia/100,
+                };
+
+
+                // Gọi hàm thêm khách hàng
+                var daokm = new DAO_KhuyenMai_Tab1();
+                bool isAdded = await daokm.AddKhuyenMai(km);
+
+                if (isAdded)
+                {
+                    MessageBox.Show("Thêm khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Thêm Khuyến Mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }  
+            else
+            {
+                KhuyenMai km = new KhuyenMai()
+                {
+                    MaKM = makm,
+                    TenKM = tenkm,
+                    MaLoaiKM = maloai,
+                    NgayBatDau = ngaybd,
+                    NgayKetThuc = ngaykt,
+                    DieuKien = new DieuKien()
+                    {
+                        TongTienToiThieu = tttt,
+                    },
+                    GiamGia = giamgia/100,
+                };
+
+
+                // Gọi hàm thêm khách hàng
+                var daokm = new DAO_KhuyenMai_Tab1();
+                bool isAdded = await daokm.UpdateKhuyenMai(km);
+
+                if (isAdded)
+                {
+                    MessageBox.Show("Sửa khuyến mãi thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Sửa Khuyến Mãi thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }    
+            
+
+        }
+
+        
 
         private async void ThemKhuyenMai_Tab4()
         {
@@ -590,10 +748,43 @@ namespace promotion_management_app.GUI
             NgayKT_Tab4.Format = DateTimePickerFormat.Custom;
             NgayKT_Tab4.CustomFormat = "dd/MM/yyyy";
             DateTime ngaykt = date_KetThuc_Tab1.Value;
-
             string hinhthuc = HinhThuc_Tab4.Text;
+            //Validate dữ liệu đầu vào
+
+            //if (String.IsNullOrWhiteSpace(tenkm))
+            //{
+            //    MessageBox.Show("Vui lòng không để trống tên khuyến mãi!");
+            //    return;
+            //}
+            //if (String.IsNullOrWhiteSpace(maloai))
+            //{
+            //    MessageBox.Show("Vui lòng không để trống loại khuyến mãi!");
+            //    return;
+            //}
+            //if (ngaybd > ngaykt)
+            //{
+            //    MessageBox.Show("Ngày bắt đầu phải nhỏ hơn ngày kết thúc!");
+            //    return;
+            //}
+            //if (String.IsNullOrWhiteSpace(hinhthuc))
+            //{
+            //    MessageBox.Show("Vui lòng không để trống hình thức khuyến mãi!");
+            //    return;
+            //}
+            //if (String.IsNullOrWhiteSpace(sltt_Tab4.Text))
+            //{
+            //    MessageBox.Show("Vui lòng không để số lượng tối thiểu!");
+            //    return;
+            //}
+            //if(!regex.IsMatch(sltt_Tab4.Text))
+            //{
+            //    MessageBox.Show("Số lượng tối thiểu là số nguyên dương!");
+            //    return;
+            //}    
             int? sltt = int.Parse(sltt_Tab4.Text);
+
             
+
             List<SanPham> SanPhamMua = new List<SanPham>();
             foreach (DataGridViewRow item in dgview_SP_Tab4.Rows)
             {
@@ -674,7 +865,7 @@ namespace promotion_management_app.GUI
                 };
 
 
-                // Gọi hàm thêm khách hàng
+                // Gọi hàm thêm khuyến mãi
                 var daokm = new DAO_KhuyenMai_Tab1();
                 bool isAdded = await daokm.AddKhuyenMai(km);
 

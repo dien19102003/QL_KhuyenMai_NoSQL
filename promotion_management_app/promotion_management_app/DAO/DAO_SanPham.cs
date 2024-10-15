@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
+using promotion_management_app.DTO;
 using static promotion_management_app.DTO.DTO_SanPham;
 
 namespace promotion_management_app.DAO

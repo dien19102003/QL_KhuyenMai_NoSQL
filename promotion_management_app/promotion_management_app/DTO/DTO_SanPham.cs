@@ -12,21 +12,30 @@ namespace promotion_management_app.DTO
 {
     public class DTO_SanPham
     {     
-        public class SanPham
-        {
-            public ObjectId _id { get; set; }
-            [BsonElement("MaSP")]
-            public string MaSP { get; set; }
-            [BsonElement("TenSP")]
-            public string TenSP { get; set; }
-            [BsonIgnoreIfNull]
-            public string HinhAnh { get; set; }
-            [BsonIgnoreIfNull]
-            public string LoaiSP { get; set; }
-            [BsonElement("GiaBan")]
-            public int GiaBan { get; set; }
-            [BsonIgnoreIfNull]
-            public int? SoLuong { get; set; }
-        }
+       
+    }
+    public class SanPham
+    {
+        public ObjectId _id { get; set; }
+        [BsonElement("MaSP")]
+        public string MaSP { get; set; }
+        [BsonElement("TenSP")]
+        public string TenSP { get; set; }
+        [BsonIgnoreIfNull]
+        public string HinhAnh { get; set; }
+        [BsonIgnoreIfNull]
+        public string LoaiSP { get; set; }
+        [BsonElement("GiaBan")]
+        public int GiaBan { get; set; }
+        [BsonIgnoreIfNull]
+        public int? SoLuong { get; set; }
+    }
+    public class SanPhamMua
+    {
+        public string MaSP { get; set; }
+        public string TenSP { get; set; }
+        public int GiaBan { get; set; }
+        public int SoLuong { get; set; }
+        public decimal ThanhTien {  get; set; }
     }
 }
