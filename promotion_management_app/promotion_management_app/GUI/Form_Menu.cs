@@ -41,7 +41,8 @@ namespace promotion_management_app.GUI
 
         private void btn_HeThong_Click(object sender, EventArgs e)
         {
-
+            Form_RecoverDB form_RecoverDB = new Form_RecoverDB();
+            MyLib.LoadForm(panel_container, form_RecoverDB, DockStyle.Fill);
         }
 
         private void btn_DangXuat_Click(object sender, EventArgs e)

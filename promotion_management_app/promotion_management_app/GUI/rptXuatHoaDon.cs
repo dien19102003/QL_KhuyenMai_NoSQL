@@ -62,8 +62,8 @@ namespace promotion_management_app.GUI
                     var productRow = dataSet.DataTable2.NewDataTable2Row();
                     productRow.TenSP = row["TenSP"].ToString();
                     productRow.SoLuong = Convert.ToInt32(row["SoLuong"]).ToString(); // Sử dụng Convert để an toàn hơn
-                    productRow.GiaBan = Convert.ToDouble(row["GiaBan"]).ToString(); // Chuyển đổi an toàn
-                    productRow.ThanhTien = Convert.ToDouble(row["ThanhTien"]).ToString(); // Chuyển đổi an toàn
+                    productRow.GiaBan = Convert.ToDouble(row["GiaBan"]).ToString("C0", new CultureInfo("vi-VN")); // Chuyển đổi an toàn
+                    productRow.ThanhTien = Convert.ToDouble(row["ThanhTien"]).ToString("C0", new CultureInfo("vi-VN")); // Chuyển đổi an toàn
                     dataSet.DataTable2.AddDataTable2Row(productRow);
                 }
                 
@@ -74,7 +74,7 @@ namespace promotion_management_app.GUI
                         var productQT = dataSet.DataTable2.NewDataTable2Row();
                         productQT.TenSP = row["TenSP"].ToString();
                         productQT.SoLuong = "1";                
-                        productQT.GiaBan = Convert.ToDouble(row["GiaBan"]).ToString(); // Chuyển đổi an toàn
+                        productQT.GiaBan = Convert.ToDouble(row["GiaBan"]).ToString("C0", new CultureInfo("vi-VN")); // Chuyển đổi an toàn
                         productQT.ThanhTien = "0";
                         dataSet.DataTable2.AddDataTable2Row(productQT);
                     }

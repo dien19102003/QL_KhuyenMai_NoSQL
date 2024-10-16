@@ -31,9 +31,10 @@ namespace promotion_management_app.GUI
         private void InitializeComponent()
         {
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSaoLuu = new Guna.UI2.WinForms.Guna2Button();
+            this.btnPhucHoi = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.comboBoxCollections = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2Panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,67 +51,89 @@ namespace promotion_management_app.GUI
             this.guna2TextBox1.Font = new System.Drawing.Font("Bahnschrift Condensed", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2TextBox1.ForeColor = System.Drawing.Color.RoyalBlue;
             this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Location = new System.Drawing.Point(101, 13);
-            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.guna2TextBox1.Location = new System.Drawing.Point(135, 16);
+            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.guna2TextBox1.Name = "guna2TextBox1";
             this.guna2TextBox1.PasswordChar = '\0';
             this.guna2TextBox1.PlaceholderText = "";
             this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(349, 68);
+            this.guna2TextBox1.Size = new System.Drawing.Size(465, 84);
             this.guna2TextBox1.TabIndex = 0;
             // 
-            // guna2Button1
+            // btnSaoLuu
             // 
-            this.guna2Button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.guna2Button1.BorderRadius = 10;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(45, 133);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(217, 45);
-            this.guna2Button1.TabIndex = 1;
-            this.guna2Button1.Text = "Sao Lưu";
+            this.btnSaoLuu.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSaoLuu.BorderRadius = 10;
+            this.btnSaoLuu.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaoLuu.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaoLuu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSaoLuu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSaoLuu.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaoLuu.ForeColor = System.Drawing.Color.White;
+            this.btnSaoLuu.Location = new System.Drawing.Point(65, 249);
+            this.btnSaoLuu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaoLuu.Name = "btnSaoLuu";
+            this.btnSaoLuu.Size = new System.Drawing.Size(289, 55);
+            this.btnSaoLuu.TabIndex = 1;
+            this.btnSaoLuu.Text = "Sao Lưu";
+            this.btnSaoLuu.Click += new System.EventHandler(this.btnSaoLuu_Click);
             // 
-            // guna2Button2
+            // btnPhucHoi
             // 
-            this.guna2Button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.guna2Button2.BorderRadius = 10;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Location = new System.Drawing.Point(286, 133);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(217, 45);
-            this.guna2Button2.TabIndex = 2;
-            this.guna2Button2.Text = "Phục Hồi";
+            this.btnPhucHoi.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPhucHoi.BorderRadius = 10;
+            this.btnPhucHoi.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPhucHoi.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPhucHoi.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPhucHoi.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPhucHoi.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPhucHoi.ForeColor = System.Drawing.Color.White;
+            this.btnPhucHoi.Location = new System.Drawing.Point(386, 249);
+            this.btnPhucHoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPhucHoi.Name = "btnPhucHoi";
+            this.btnPhucHoi.Size = new System.Drawing.Size(289, 55);
+            this.btnPhucHoi.TabIndex = 2;
+            this.btnPhucHoi.Text = "Phục Hồi";
+            this.btnPhucHoi.Click += new System.EventHandler(this.btnPhucHoi_Click);
             // 
             // guna2Panel1
             // 
             this.guna2Panel1.Controls.Add(this.guna2TextBox1);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(585, 98);
+            this.guna2Panel1.Size = new System.Drawing.Size(780, 121);
             this.guna2Panel1.TabIndex = 3;
             this.guna2Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
             // 
+            // comboBoxCollections
+            // 
+            this.comboBoxCollections.BackColor = System.Drawing.Color.Transparent;
+            this.comboBoxCollections.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboBoxCollections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCollections.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.comboBoxCollections.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.comboBoxCollections.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.comboBoxCollections.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.comboBoxCollections.ItemHeight = 30;
+            this.comboBoxCollections.Location = new System.Drawing.Point(213, 173);
+            this.comboBoxCollections.Name = "comboBoxCollections";
+            this.comboBoxCollections.Size = new System.Drawing.Size(313, 36);
+            this.comboBoxCollections.TabIndex = 4;
+            // 
             // Form_RecoverDB
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(585, 361);
+            this.ClientSize = new System.Drawing.Size(780, 444);
+            this.Controls.Add(this.comboBoxCollections);
             this.Controls.Add(this.guna2Panel1);
-            this.Controls.Add(this.guna2Button2);
-            this.Controls.Add(this.guna2Button1);
+            this.Controls.Add(this.btnPhucHoi);
+            this.Controls.Add(this.btnSaoLuu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form_RecoverDB";
             this.Text = "Form_RecoverDB";
             this.guna2Panel1.ResumeLayout(false);
@@ -121,8 +144,9 @@ namespace promotion_management_app.GUI
         #endregion
 
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button btnSaoLuu;
+        private Guna.UI2.WinForms.Guna2Button btnPhucHoi;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2ComboBox comboBoxCollections;
     }
 }
