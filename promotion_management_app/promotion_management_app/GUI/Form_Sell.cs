@@ -202,7 +202,7 @@ namespace promotion_management_app.GUI
                         return;
                     }
                     //THực hiện giảm giá voucher
-                    double tiengiam = (chechdK.GiaBan * chechdK.SoLuong) * khuyenMai.Voucher.GiamGia;
+                    double tiengiam = (chechdK.GiaBan * (double)khuyenMai.DieuKien.SoLuongToiThieu) * khuyenMai.Voucher.GiamGia;
 
                     //Trừ tiền giảm giá 
                     hoaDon.TienKhuyenMai = tiengiam;
@@ -217,7 +217,7 @@ namespace promotion_management_app.GUI
                         MessageBox.Show("Không đủ điều kiện để sử dụng voucher");
                         return;
                     }
-                    double giamgia = hoaDon.TongCong * khuyenMai.GiamGia;
+                    double giamgia = hoaDon.TongCong * khuyenMai.Voucher.GiamGia;
                     hoaDon.TienKhuyenMai = giamgia;
                     hoaDon.TongTien = hoaDon.TongTien - giamgia;
                     hoaDon.KhuyenMai = khuyenMai;
@@ -246,8 +246,23 @@ namespace promotion_management_app.GUI
             }
 
             Console.WriteLine("Ngày mua" + hoaDon.NgayLap.ToString("dd/MM/yyyy HH:mm:ss"));
-            List<SanPham> sanphamqt=new List<SanPham>();
-            ICollection<SanPham> spqt = hoaDon.KhuyenMai.QuaTang;   
+
+            ICollection<SanPham> spqt = null;
+            //ICollection<SanPham> spqt = hoaDon.KhuyenMai.QuaTang;   
+            if (hoaDon != null && hoaDon.KhuyenMai != null && hoaDon.KhuyenMai.QuaTang != null)
+            {
+                spqt = hoaDon.KhuyenMai.QuaTang;
+                // Xử lý tiếp với spqt
+            }
+            else
+            {
+                if (spqt is null)
+                {
+                    spqt = new List<SanPham>();
+                }              
+            }
+
+           
             rptXuatHoaDon reportForm = new rptXuatHoaDon(hoaDon,sanPhamMuas, spqt);
             reportForm.Show(); // Hiển thị Form báo cáo
         }

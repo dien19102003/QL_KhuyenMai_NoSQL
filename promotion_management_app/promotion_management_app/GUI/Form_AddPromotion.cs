@@ -781,8 +781,8 @@ namespace promotion_management_app.GUI
             //    MessageBox.Show("Số lượng tối thiểu là số nguyên dương!");
             //    return;
             //}    
-            int? sltt = int.Parse(sltt_Tab4.Text);
-
+            int sltt = int.Parse(sltt_Tab4.Text);
+            double tttt = double.Parse(tttt_Tab4.Text);
             
 
             List<SanPham> SanPhamMua = new List<SanPham>();
@@ -827,6 +827,7 @@ namespace promotion_management_app.GUI
                     {
                         SanPham = SanPhamMua,
                         SoLuongToiThieu = sltt,
+                        TongTienToiThieu =tttt,
                     },
                     Voucher = vc,
 
@@ -1056,7 +1057,7 @@ namespace promotion_management_app.GUI
                             if (voucher != null)
                             {
                                 dgview_Voucher_Tab4.Rows.Clear();
-                                dgview_Voucher_Tab4.Rows.Add(voucher.GiftCode, voucher.GiamGia, voucher.NgayBatDau, voucher.NgayKetThuc);
+                                dgview_Voucher_Tab4.Rows.Add(voucher.GiftCode, voucher.NgayBatDau, voucher.NgayKetThuc, voucher.GiamGia);
                             }
                         }
                     }
@@ -1142,6 +1143,16 @@ namespace promotion_management_app.GUI
             string texttimkiem=txtSearch.Text;
             List<KhuyenMai> km = khuyenMaiList.Where(k=>k.TenKM.Contains(texttimkiem)).ToList();
             dgv_ALLkhuyenmai.DataSource = km;
+        }
+
+        private void sltt_Tab4_TextChanged(object sender, EventArgs e)
+        {
+            tttt_Tab4.Text = "0";
+        }
+
+        private void tttt_Tab4_TextChanged(object sender, EventArgs e)
+        {
+            sltt_Tab4.Text = "0";
         }
     }
 
