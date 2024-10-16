@@ -25,7 +25,7 @@ namespace promotion_management_app.DTO
         {
             Random random = new Random();
             string randomNumber = random.Next(1000000000, int.MaxValue).ToString("D10");
-            return "MAKM" + randomNumber;
+            return "MAHD" + randomNumber;
         }
     }
 }

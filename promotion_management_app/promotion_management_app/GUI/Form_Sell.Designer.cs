@@ -105,10 +105,9 @@ namespace promotion_management_app.GUI
             // 
             this.panel_SanPham.BackColor = System.Drawing.Color.White;
             this.panel_SanPham.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_SanPham.Location = new System.Drawing.Point(4, 207);
-            this.panel_SanPham.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_SanPham.Location = new System.Drawing.Point(3, 168);
             this.panel_SanPham.Name = "panel_SanPham";
-            this.panel_SanPham.Size = new System.Drawing.Size(739, 678);
+            this.panel_SanPham.Size = new System.Drawing.Size(554, 551);
             this.panel_SanPham.TabIndex = 6;
             // 
             // SoLuong
@@ -124,10 +123,9 @@ namespace promotion_management_app.GUI
             this.guna2Panel7.BackColor = System.Drawing.Color.Navy;
             this.guna2Panel7.Controls.Add(this.guna2HtmlLabel5);
             this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel7.Location = new System.Drawing.Point(751, 153);
-            this.guna2Panel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Panel7.Location = new System.Drawing.Point(563, 124);
             this.guna2Panel7.Name = "guna2Panel7";
-            this.guna2Panel7.Size = new System.Drawing.Size(552, 44);
+            this.guna2Panel7.Size = new System.Drawing.Size(414, 36);
             this.guna2Panel7.TabIndex = 5;
             // 
             // guna2HtmlLabel5
@@ -136,8 +134,8 @@ namespace promotion_management_app.GUI
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(196, 7);
-            this.guna2HtmlLabel5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(147, 6);
+            this.guna2HtmlLabel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             this.guna2HtmlLabel5.Size = new System.Drawing.Size(113, 21);
             this.guna2HtmlLabel5.TabIndex = 0;
@@ -156,10 +154,9 @@ namespace promotion_management_app.GUI
             this.guna2Panel6.BackColor = System.Drawing.Color.Navy;
             this.guna2Panel6.Controls.Add(this.guna2HtmlLabel4);
             this.guna2Panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel6.Location = new System.Drawing.Point(4, 153);
-            this.guna2Panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Panel6.Location = new System.Drawing.Point(3, 124);
             this.guna2Panel6.Name = "guna2Panel6";
-            this.guna2Panel6.Size = new System.Drawing.Size(739, 44);
+            this.guna2Panel6.Size = new System.Drawing.Size(554, 36);
             this.guna2Panel6.TabIndex = 4;
             // 
             // guna2HtmlLabel4
@@ -168,8 +165,8 @@ namespace promotion_management_app.GUI
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(284, 9);
-            this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(213, 7);
+            this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             this.guna2HtmlLabel4.Size = new System.Drawing.Size(116, 21);
             this.guna2HtmlLabel4.TabIndex = 0;
@@ -202,14 +199,14 @@ namespace promotion_management_app.GUI
             this.txtMaNB.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaNB.ForeColor = System.Drawing.Color.Black;
             this.txtMaNB.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMaNB.Location = new System.Drawing.Point(4, 33);
-            this.txtMaNB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtMaNB.Location = new System.Drawing.Point(3, 27);
+            this.txtMaNB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMaNB.Name = "txtMaNB";
             this.txtMaNB.PasswordChar = '\0';
             this.txtMaNB.PlaceholderForeColor = System.Drawing.Color.Black;
             this.txtMaNB.PlaceholderText = "Mã hóa đơn .....";
             this.txtMaNB.SelectedText = "";
-            this.txtMaNB.Size = new System.Drawing.Size(283, 44);
+            this.txtMaNB.Size = new System.Drawing.Size(212, 36);
             this.txtMaNB.TabIndex = 0;
             // 
             // txtKhuyenMai
@@ -231,14 +228,14 @@ namespace promotion_management_app.GUI
             this.txtKhuyenMai.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKhuyenMai.ForeColor = System.Drawing.Color.Black;
             this.txtKhuyenMai.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtKhuyenMai.Location = new System.Drawing.Point(4, 123);
-            this.txtKhuyenMai.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtKhuyenMai.Location = new System.Drawing.Point(3, 100);
+            this.txtKhuyenMai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtKhuyenMai.Name = "txtKhuyenMai";
             this.txtKhuyenMai.PasswordChar = '\0';
             this.txtKhuyenMai.PlaceholderForeColor = System.Drawing.Color.Black;
             this.txtKhuyenMai.PlaceholderText = "";
             this.txtKhuyenMai.SelectedText = "";
-            this.txtKhuyenMai.Size = new System.Drawing.Size(283, 45);
+            this.txtKhuyenMai.Size = new System.Drawing.Size(212, 37);
             this.txtKhuyenMai.TabIndex = 0;
             // 
             // guna2Panel5
@@ -249,10 +246,10 @@ namespace promotion_management_app.GUI
             this.guna2Panel5.Controls.Add(this.btnSearch);
             this.guna2Panel5.Controls.Add(this.txtSoDienThoai);
             this.guna2Panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel5.Location = new System.Drawing.Point(751, 57);
-            this.guna2Panel5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Panel5.Location = new System.Drawing.Point(563, 46);
+            this.guna2Panel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2Panel5.Name = "guna2Panel5";
-            this.guna2Panel5.Size = new System.Drawing.Size(552, 87);
+            this.guna2Panel5.Size = new System.Drawing.Size(414, 71);
             this.guna2Panel5.TabIndex = 3;
             // 
             // btnAdd
@@ -268,10 +265,9 @@ namespace promotion_management_app.GUI
             this.btnAdd.FillColor2 = System.Drawing.Color.RoyalBlue;
             this.btnAdd.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(439, 21);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Location = new System.Drawing.Point(329, 17);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(107, 49);
+            this.btnAdd.Size = new System.Drawing.Size(80, 40);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -289,10 +285,9 @@ namespace promotion_management_app.GUI
             this.btnSearch.FillColor2 = System.Drawing.Color.RoyalBlue;
             this.btnSearch.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(325, 21);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Location = new System.Drawing.Point(244, 17);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(107, 49);
+            this.btnSearch.Size = new System.Drawing.Size(80, 40);
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -313,15 +308,15 @@ namespace promotion_management_app.GUI
             this.txtSoDienThoai.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSoDienThoai.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSoDienThoai.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSoDienThoai.Location = new System.Drawing.Point(4, 23);
-            this.txtSoDienThoai.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.txtSoDienThoai.MaximumSize = new System.Drawing.Size(600, 49);
+            this.txtSoDienThoai.Location = new System.Drawing.Point(3, 19);
+            this.txtSoDienThoai.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtSoDienThoai.MaximumSize = new System.Drawing.Size(450, 40);
             this.txtSoDienThoai.Name = "txtSoDienThoai";
             this.txtSoDienThoai.PasswordChar = '\0';
             this.txtSoDienThoai.PlaceholderForeColor = System.Drawing.Color.Black;
             this.txtSoDienThoai.PlaceholderText = "Nhập số điện thoại .......";
             this.txtSoDienThoai.SelectedText = "";
-            this.txtSoDienThoai.Size = new System.Drawing.Size(313, 44);
+            this.txtSoDienThoai.Size = new System.Drawing.Size(235, 36);
             this.txtSoDienThoai.TabIndex = 2;
             // 
             // txtTongTien
@@ -343,14 +338,14 @@ namespace promotion_management_app.GUI
             this.txtTongTien.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTongTien.ForeColor = System.Drawing.Color.Black;
             this.txtTongTien.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTongTien.Location = new System.Drawing.Point(295, 123);
-            this.txtTongTien.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTongTien.Location = new System.Drawing.Point(221, 100);
+            this.txtTongTien.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.PasswordChar = '\0';
             this.txtTongTien.PlaceholderForeColor = System.Drawing.Color.Black;
             this.txtTongTien.PlaceholderText = "Tổng tiền ....";
             this.txtTongTien.SelectedText = "";
-            this.txtTongTien.Size = new System.Drawing.Size(253, 45);
+            this.txtTongTien.Size = new System.Drawing.Size(190, 37);
             this.txtTongTien.TabIndex = 0;
             // 
             // txtTenKhachHang
@@ -372,14 +367,14 @@ namespace promotion_management_app.GUI
             this.txtTenKhachHang.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenKhachHang.ForeColor = System.Drawing.Color.Black;
             this.txtTenKhachHang.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTenKhachHang.Location = new System.Drawing.Point(295, 33);
-            this.txtTenKhachHang.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTenKhachHang.Location = new System.Drawing.Point(221, 27);
+            this.txtTenKhachHang.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTenKhachHang.Name = "txtTenKhachHang";
             this.txtTenKhachHang.PasswordChar = '\0';
             this.txtTenKhachHang.PlaceholderForeColor = System.Drawing.Color.Black;
             this.txtTenKhachHang.PlaceholderText = "Tên khách hàng ....";
             this.txtTenKhachHang.SelectedText = "";
-            this.txtTenKhachHang.Size = new System.Drawing.Size(253, 44);
+            this.txtTenKhachHang.Size = new System.Drawing.Size(190, 36);
             this.txtTenKhachHang.TabIndex = 0;
             // 
             // guna2Panel4
@@ -389,10 +384,10 @@ namespace promotion_management_app.GUI
             this.guna2Panel4.Controls.Add(this.cbbLoai);
             this.guna2Panel4.Controls.Add(this.txtSearchSP);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel4.Location = new System.Drawing.Point(4, 57);
-            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Panel4.Location = new System.Drawing.Point(3, 46);
+            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.Size = new System.Drawing.Size(739, 87);
+            this.guna2Panel4.Size = new System.Drawing.Size(554, 71);
             this.guna2Panel4.TabIndex = 2;
             // 
             // cbbLoai
@@ -407,11 +402,10 @@ namespace promotion_management_app.GUI
             this.cbbLoai.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbLoai.ForeColor = System.Drawing.Color.Black;
             this.cbbLoai.ItemHeight = 30;
-            this.cbbLoai.Location = new System.Drawing.Point(408, 26);
-            this.cbbLoai.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cbbLoai.MaximumSize = new System.Drawing.Size(465, 0);
+            this.cbbLoai.Location = new System.Drawing.Point(306, 21);
+            this.cbbLoai.MaximumSize = new System.Drawing.Size(350, 0);
             this.cbbLoai.Name = "cbbLoai";
-            this.cbbLoai.Size = new System.Drawing.Size(329, 36);
+            this.cbbLoai.Size = new System.Drawing.Size(248, 36);
             this.cbbLoai.TabIndex = 1;
             // 
             // txtSearchSP
@@ -428,15 +422,15 @@ namespace promotion_management_app.GUI
             this.txtSearchSP.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearchSP.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchSP.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearchSP.Location = new System.Drawing.Point(9, 26);
-            this.txtSearchSP.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.txtSearchSP.MaximumSize = new System.Drawing.Size(467, 49);
+            this.txtSearchSP.Location = new System.Drawing.Point(7, 21);
+            this.txtSearchSP.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtSearchSP.MaximumSize = new System.Drawing.Size(350, 40);
             this.txtSearchSP.Name = "txtSearchSP";
             this.txtSearchSP.PasswordChar = '\0';
             this.txtSearchSP.PlaceholderForeColor = System.Drawing.Color.Black;
             this.txtSearchSP.PlaceholderText = "Nhập tên sản phẩm .......";
             this.txtSearchSP.SelectedText = "";
-            this.txtSearchSP.Size = new System.Drawing.Size(319, 44);
+            this.txtSearchSP.Size = new System.Drawing.Size(239, 36);
             this.txtSearchSP.TabIndex = 0;
             // 
             // guna2Panel2
@@ -445,10 +439,10 @@ namespace promotion_management_app.GUI
             this.guna2Panel2.BorderRadius = 5;
             this.guna2Panel2.Controls.Add(this.guna2HtmlLabel1);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel2.Location = new System.Drawing.Point(4, 5);
-            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Panel2.Location = new System.Drawing.Point(3, 4);
+            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(739, 42);
+            this.guna2Panel2.Size = new System.Drawing.Size(554, 34);
             this.guna2Panel2.TabIndex = 0;
             // 
             // guna2HtmlLabel1
@@ -457,8 +451,8 @@ namespace promotion_management_app.GUI
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(284, 6);
-            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(213, 5);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(106, 21);
             this.guna2HtmlLabel1.TabIndex = 0;
@@ -470,10 +464,10 @@ namespace promotion_management_app.GUI
             this.guna2Panel3.BorderRadius = 5;
             this.guna2Panel3.Controls.Add(this.guna2HtmlLabel3);
             this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel3.Location = new System.Drawing.Point(751, 5);
-            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Panel3.Location = new System.Drawing.Point(563, 4);
+            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Size = new System.Drawing.Size(552, 42);
+            this.guna2Panel3.Size = new System.Drawing.Size(414, 34);
             this.guna2Panel3.TabIndex = 1;
             // 
             // guna2HtmlLabel3
@@ -482,8 +476,8 @@ namespace promotion_management_app.GUI
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(196, 6);
-            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(147, 5);
+            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             this.guna2HtmlLabel3.Size = new System.Drawing.Size(114, 21);
             this.guna2HtmlLabel3.TabIndex = 0;
@@ -503,11 +497,10 @@ namespace promotion_management_app.GUI
             this.btnThanhToanInHD.FillColor2 = System.Drawing.Color.RoyalBlue;
             this.btnThanhToanInHD.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThanhToanInHD.ForeColor = System.Drawing.Color.White;
-            this.btnThanhToanInHD.Location = new System.Drawing.Point(82, 180);
-            this.btnThanhToanInHD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnThanhToanInHD.MaximumSize = new System.Drawing.Size(667, 49);
+            this.btnThanhToanInHD.Location = new System.Drawing.Point(61, 146);
+            this.btnThanhToanInHD.MaximumSize = new System.Drawing.Size(500, 40);
             this.btnThanhToanInHD.Name = "btnThanhToanInHD";
-            this.btnThanhToanInHD.Size = new System.Drawing.Size(388, 49);
+            this.btnThanhToanInHD.Size = new System.Drawing.Size(291, 40);
             this.btnThanhToanInHD.TabIndex = 4;
             this.btnThanhToanInHD.Text = "Thanh toán và in hóa đơn";
             // 
@@ -528,10 +521,9 @@ namespace promotion_management_app.GUI
             this.guna2Panel9.BackColor = System.Drawing.Color.White;
             this.guna2Panel9.Controls.Add(this.dgviewm_listSanPham);
             this.guna2Panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel9.Location = new System.Drawing.Point(751, 207);
-            this.guna2Panel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Panel9.Location = new System.Drawing.Point(563, 168);
             this.guna2Panel9.Name = "guna2Panel9";
-            this.guna2Panel9.Size = new System.Drawing.Size(552, 676);
+            this.guna2Panel9.Size = new System.Drawing.Size(414, 549);
             this.guna2Panel9.TabIndex = 7;
             // 
             // dgviewm_listSanPham
@@ -588,7 +580,7 @@ namespace promotion_management_app.GUI
             this.dgviewm_listSanPham.RowHeadersWidth = 51;
             this.dgviewm_listSanPham.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.dgviewm_listSanPham.RowTemplate.Height = 40;
-            this.dgviewm_listSanPham.Size = new System.Drawing.Size(552, 676);
+            this.dgviewm_listSanPham.Size = new System.Drawing.Size(414, 549);
             this.dgviewm_listSanPham.TabIndex = 3;
             this.dgviewm_listSanPham.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgviewm_listSanPham.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -639,15 +631,14 @@ namespace promotion_management_app.GUI
             this.tableLayoutPanel3.Controls.Add(this.check_promotion, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.cbb_KhuyenMai, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 893);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 725);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(739, 236);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(554, 192);
             this.tableLayoutPanel3.TabIndex = 9;
             // 
             // panel_layoutPage
@@ -656,10 +647,9 @@ namespace promotion_management_app.GUI
             this.panel_layoutPage.BackColor = System.Drawing.Color.White;
             this.panel_layoutPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel3.SetColumnSpan(this.panel_layoutPage, 2);
-            this.panel_layoutPage.Location = new System.Drawing.Point(20, 84);
-            this.panel_layoutPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_layoutPage.Location = new System.Drawing.Point(14, 68);
             this.panel_layoutPage.Name = "panel_layoutPage";
-            this.panel_layoutPage.Size = new System.Drawing.Size(699, 68);
+            this.panel_layoutPage.Size = new System.Drawing.Size(525, 56);
             this.panel_layoutPage.TabIndex = 0;
             // 
             // check_promotion
@@ -671,8 +661,7 @@ namespace promotion_management_app.GUI
             this.check_promotion.CheckedState.BorderThickness = 0;
             this.check_promotion.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.check_promotion.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.check_promotion.Location = new System.Drawing.Point(373, 182);
-            this.check_promotion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.check_promotion.Location = new System.Drawing.Point(280, 146);
             this.check_promotion.Name = "check_promotion";
             this.check_promotion.Size = new System.Drawing.Size(153, 27);
             this.check_promotion.TabIndex = 2;
@@ -694,11 +683,11 @@ namespace promotion_management_app.GUI
             this.cbb_KhuyenMai.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbb_KhuyenMai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbb_KhuyenMai.ItemHeight = 30;
-            this.cbb_KhuyenMai.Location = new System.Drawing.Point(5, 178);
-            this.cbb_KhuyenMai.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbb_KhuyenMai.Location = new System.Drawing.Point(3, 141);
             this.cbb_KhuyenMai.Name = "cbb_KhuyenMai";
-            this.cbb_KhuyenMai.Size = new System.Drawing.Size(360, 36);
+            this.cbb_KhuyenMai.Size = new System.Drawing.Size(271, 36);
             this.cbb_KhuyenMai.TabIndex = 3;
+            this.cbb_KhuyenMai.SelectedIndexChanged += new System.EventHandler(this.cbb_KhuyenMai_SelectedIndexChanged);
             // 
             // guna2Panel1
             // 
@@ -706,9 +695,9 @@ namespace promotion_management_app.GUI
             this.guna2Panel1.Controls.Add(this.tableLayoutPanel1);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1307, 1294);
+            this.guna2Panel1.Size = new System.Drawing.Size(980, 1051);
             this.guna2Panel1.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -729,20 +718,20 @@ namespace promotion_management_app.GUI
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 686F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 268F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1307, 1157);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 557F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 218F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 940);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayout_InHoaDon
@@ -756,34 +745,32 @@ namespace promotion_management_app.GUI
             this.tableLayout_InHoaDon.Controls.Add(this.txtTenKhachHang, 1, 1);
             this.tableLayout_InHoaDon.Controls.Add(this.btnThanhToanInHD, 0, 4);
             this.tableLayout_InHoaDon.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayout_InHoaDon.Location = new System.Drawing.Point(751, 893);
-            this.tableLayout_InHoaDon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayout_InHoaDon.Location = new System.Drawing.Point(563, 725);
             this.tableLayout_InHoaDon.Name = "tableLayout_InHoaDon";
             this.tableLayout_InHoaDon.RowCount = 5;
             this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.4878F));
             this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.51219F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayout_InHoaDon.Size = new System.Drawing.Size(552, 236);
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout_InHoaDon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout_InHoaDon.Size = new System.Drawing.Size(414, 192);
             this.tableLayout_InHoaDon.TabIndex = 8;
             // 
             // Form_Sell
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1307, 1100);
+            this.ClientSize = new System.Drawing.Size(980, 887);
             this.Controls.Add(this.guna2Panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form_Sell";
             this.Text = "Form_Sell";
             this.guna2Panel7.ResumeLayout(false);

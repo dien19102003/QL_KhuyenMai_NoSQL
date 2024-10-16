@@ -1,10 +1,12 @@
-﻿using Guna.UI2.WinForms;
+﻿using CrystalDecisions.Windows.Forms;
+using Guna.UI2.WinForms;
 using MongoDB.Driver;
 using promotion_management_app.BASE;
 using promotion_management_app.DAO;
 using promotion_management_app.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -44,7 +46,7 @@ namespace promotion_management_app.GUI
         {
             this.check_promotion.Text = "Áp dụng khuyến mãi";
             //Chỉ lấy những khuyến mãi còn sử dụng được
-            khuyenMaiList= khuyenMaiDAO.GetListKhuyenMai().Where(km=>km.NgayBatDau <= DateTime.Now && km.NgayKetThuc >=DateTime.Now).ToList();
+            khuyenMaiList = khuyenMaiDAO.GetListKhuyenMai().Where(km => km.NgayBatDau <= DateTime.Now && km.NgayKetThuc >= DateTime.Now).ToList();
             cbb_KhuyenMai.DataSource= khuyenMaiList;
             cbb_KhuyenMai.DisplayMember = "TenKM";
             cbb_KhuyenMai.ValueMember = "MaKM";
@@ -164,11 +166,11 @@ namespace promotion_management_app.GUI
                             hoaDon.KhuyenMai = khuyenMai;
                         }    
                         break;
-                    //Giảm giá theo voucher của khách hàng
-                    case "LoaiKM04":
+                    ////Giảm giá theo voucher của khách hàng
+                    //case "LoaiKM04":
 
-                        MessageBox.Show("Mua hàng thành công");
-                        break;
+                    //    MessageBox.Show("Mua hàng thành công");
+                    //    break;
                     default:
                         MessageBox.Show("Không có loại khuyến mãi phù hợp");
                         break;
@@ -200,7 +202,7 @@ namespace promotion_management_app.GUI
                         return;
                     }
                     //THực hiện giảm giá voucher
-                    double tiengiam = (chechdK.GiaBan * chechdK.SoLuong) * khuyenMai.GiamGia;
+                    double tiengiam = (chechdK.GiaBan * chechdK.SoLuong) * khuyenMai.Voucher.GiamGia;
 
                     //Trừ tiền giảm giá 
                     hoaDon.TienKhuyenMai = tiengiam;
@@ -244,7 +246,12 @@ namespace promotion_management_app.GUI
             }
 
             Console.WriteLine("Ngày mua" + hoaDon.NgayLap.ToString("dd/MM/yyyy HH:mm:ss"));
+            List<SanPham> sanphamqt=new List<SanPham>();
+            ICollection<SanPham> spqt = hoaDon.KhuyenMai.QuaTang;   
+            rptXuatHoaDon reportForm = new rptXuatHoaDon(hoaDon,sanPhamMuas, spqt);
+            reportForm.Show(); // Hiển thị Form báo cáo
         }
+      
         private void Dgviewm_listSanPham_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
            if(e.RowIndex>=0)
@@ -606,6 +613,11 @@ namespace promotion_management_app.GUI
         {
             Form_Customer formCustomer = new Form_Customer();
             formCustomer.Show();
+        }
+
+        private void cbb_KhuyenMai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

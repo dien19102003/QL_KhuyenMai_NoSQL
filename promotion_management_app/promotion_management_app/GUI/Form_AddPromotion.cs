@@ -448,15 +448,15 @@ namespace promotion_management_app.GUI
             string maloai = cbbkhuyenmai_Tab2.SelectedValue.ToString();
 
             // Thiết lập định dạng cho DateTimePicker
-            NgayBD_Tab3.Format = DateTimePickerFormat.Custom;
-            NgayBD_Tab3.CustomFormat = "dd/MM/yyyy";
+            NgayBD_Tab2.Format = DateTimePickerFormat.Custom;
+            NgayBD_Tab2.CustomFormat = "dd/MM/yyyy";
 
             // Lấy giá trị từ DateTimePicker
-            DateTime ngaybd = date_NgayBD_Tab1.Value;
+            DateTime ngaybd = NgayBD_Tab2.Value;
 
-            NgayKT_Tab3.Format = DateTimePickerFormat.Custom;
-            NgayKT_Tab3.CustomFormat = "dd/MM/yyyy";
-            DateTime ngaykt = date_KetThuc_Tab1.Value;
+            NgayKT_Tab2.Format = DateTimePickerFormat.Custom;
+            NgayKT_Tab2.CustomFormat = "dd/MM/yyyy";
+            DateTime ngaykt = NgayKT_Tab2.Value;
 
             string hinhthuc = HinhThuc_Tab2.Text;
 
@@ -605,11 +605,11 @@ namespace promotion_management_app.GUI
             NgayBD_Tab3.Format = DateTimePickerFormat.Custom;
             NgayBD_Tab3.CustomFormat = "dd/MM/yyyy";
             // Lấy giá trị từ DateTimePicker
-            DateTime ngaybd = date_NgayBD_Tab1.Value;
+            DateTime ngaybd = NgayBD_Tab3.Value;
 
             NgayKT_Tab3.Format = DateTimePickerFormat.Custom;
             NgayKT_Tab3.CustomFormat = "dd/MM/yyyy";
-            DateTime ngaykt = date_KetThuc_Tab1.Value;
+            DateTime ngaykt = NgayKT_Tab3.Value;
 
             string hinhthuc = HinhThuc_Tab3.Text;
 
@@ -743,12 +743,12 @@ namespace promotion_management_app.GUI
             NgayBD_Tab4.Format = DateTimePickerFormat.Custom;
             NgayBD_Tab4.CustomFormat = "dd/MM/yyyy";
             // Lấy giá trị từ DateTimePicker
-            DateTime ngaybd = date_NgayBD_Tab1.Value;
+            DateTime ngaybd = NgayBD_Tab4.Value;
 
             NgayKT_Tab4.Format = DateTimePickerFormat.Custom;
             NgayKT_Tab4.CustomFormat = "dd/MM/yyyy";
-            DateTime ngaykt = date_KetThuc_Tab1.Value;
-            string hinhthuc = HinhThuc_Tab4.Text;
+            DateTime ngaykt = NgayKT_Tab4.Value;
+            string hinhthuc = NgayKT_Tab4.Text;
             //Validate dữ liệu đầu vào
 
             //if (String.IsNullOrWhiteSpace(tenkm))
@@ -939,8 +939,10 @@ namespace promotion_management_app.GUI
                         TenKM_Tab3.Text = tenKM;
                         NgayBD_Tab3.Value = ngayBatDau;
                         NgayKT_Tab3.Value = ngayKetThuc;
-                        Giamgia_Tab3.Text = giamGia.ToString();
-                       // cbbkhuyenmai_Tab3.SelectedIndex = 0;
+                        //Giamgia_Tab3.Text = giamGia.ToString();
+                        Giamgia_Tab3.Text = (giamGia * 100).ToString("0.##") ;
+
+                        // cbbkhuyenmai_Tab3.SelectedIndex = 0;
                         //DieuKien
                         if (selectedRow.Cells["DieuKien"].Value != null)
                         {
@@ -959,7 +961,7 @@ namespace promotion_management_app.GUI
                        // txtHinhThuc_Tab1.Text=hinhthuc;
                         date_NgayBD_Tab1.Value = ngayBatDau;
                         date_KetThuc_Tab1.Value = ngayKetThuc;
-                        txtGiamGia_Tab1.Text = giamGia.ToString();
+                        txtGiamGia_Tab1.Text = (giamGia * 100).ToString("0.##");
                         //cbbkhuyenmai_Tab3.SelectedIndex = 1;
                         //DieuKien
                         if (selectedRow.Cells["DieuKien"].Value != null)

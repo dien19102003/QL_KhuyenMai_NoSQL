@@ -56,7 +56,7 @@ namespace promotion_management_app.DAO
             {              
                 km.NgayBatDau = TimeZoneInfo.ConvertTimeFromUtc(km.NgayBatDau, vietNamTimeZone);
                 km.NgayKetThuc = TimeZoneInfo.ConvertTimeFromUtc(km.NgayKetThuc, vietNamTimeZone);
-                km.GiamGia = (float)Math.Round(km.GiamGia, 2);
+                //km.GiamGia = (float)Math.Round(km.GiamGia, 2);
             }
 
             return khuyenMaiList;
